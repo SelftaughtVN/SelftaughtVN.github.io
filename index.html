@@ -1,114 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/necolas/normalize.css/normalize.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&display=swap">
-  <style>
-    .header {
-      background-image: url('https://drive.google.com/uc?export=view&id=1iOoNFnr1EaUfHQk06o3ZRBY_tYWYltSz');
-      background-size: cover;
-      width: 100%;
-    }
-    .logo {
-      width: 50px;
-      height: auto;
-      margin: 5px 0px 0px 25px;
-    }
-    h5.brandname {
-      font-family: Comfortaa, serif;
-      font-size: 0.9em;
-      display: inline-block;
-      color: white;
-    }
-    h1.catchphrase {
-      font-family: Bitter, sans-serif;
-      font-size: 2.85em;
-      color: white;
-    }
-    .nav-link {
-      color: white;
-      text-decoration: underline rgba(255, 255, 255, 0) solid 0.2em;
-      text-underline-offset: 10px;
-      transition: text-decoration-color 300ms;
-    }
-    .nav-link:hover {
-      color: white;
-      text-decoration-color: rgba(255, 255, 255, 1);
-    }
-    .navbar-toggler {
-    border-color: white;
-    }
-    .navbar.transparent {
-      background-color: transparent;
-      transition: background-color 0.3s ease-in-out;
-    }
-    .navbar.scroll {
-      background-color: #efefef;
-      transition: background-color 0.3s ease-in-out;
-    }
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255,255,255)' stroke-width='2' stroke-linecap='round' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"); 
-    }
-  </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      window.addEventListener('scroll', function() {
-        var navbar = document.querySelector('.navbar');
-        var brandname = document.querySelector('.brandname');
-        var iconborder = document.querySelector('.navbar-toggler');
-	var icon = document.querySelector('.navbar-toggler-icon');
-        if (window.scrollY > 0) {
-          navbar.classList.add('scroll');
-          brandname.style.color = 'black';	  
-	  iconborder.style.borderColor = 'black';
-	  icon.style.backgroundImage = 'url("data:image/svg+xml;charset=utf8,%3Csvg viewBox=\'0 0 32 32\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath stroke=\'rgb(0,0,0)\' stroke-width=\'2\' stroke-linecap=\'round\' d=\'M4 8h24M4 16h24M4 24h24\'/%3E%3C/svg%3E")';
-        } else {
-          navbar.classList.remove('scroll');
-          brandname.style.color = '';
-          iconborder.style.borderColor = '';
-	      icon.style.backgroundImage = '';
-        }
+<html lang="en" dir="ltr" title="SelftaughtVN Homepage">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/necolas/normalize.css/normalize.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&display=swap" />
+    <link rel="icon" type="image/svg" href="https://drive.google.com/uc?export=view&id=1TY_QP4QNDzLhdhnY8psDb4P1jhQC-er5" />
+    <style>
+      .header {
+        background-image: url("https://drive.google.com/uc?export=view&id=1iOoNFnr1EaUfHQk06o3ZRBY_tYWYltSz");
+        background-size: cover;
+      }
+      .logo {
+        width: 50px;
+        height: auto;
+        margin: 5px 0px 0px 25px;
+      }
+      h5.brandname {
+        font-family: Comfortaa, serif;
+        font-size: 0.9em;
+        display: inline-block;
+        color: white;
+      }
+      h1.catchphrase {
+        font-family: Bitter, sans-serif;
+        font-size: 2.85em;
+        color: white;
+      }
+      .nav-link {
+        --underline-color: 255, 255, 255;
+        color: white;
+        text-decoration: underline rgba(var(--underline-color), 0) solid 0.2em;
+        text-underline-offset: 10px;
+        transition: text-decoration-color 300ms;
+      }
+      .nav-link:hover {
+        color: white;
+        text-decoration-color: rgba(var(--underline-color), 1);
+      }
+      .navbar-toggler {
+        border-color: white;
+      }
+      .navbar.transparent {
+        background-color: transparent;
+        transition: background-color 0.3s ease-in-out;
+      }
+      .navbar.scroll {
+        background-color: #efefef;
+        transition: background-color 0.3s ease-in-out;
+      }
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255,255,255)' stroke-width='2' stroke-linecap='round' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+      }
+      .collapse.navbar-collapse {
+        background-color: transparent;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".header").style.paddingTop = String(document.querySelector(".navbar").offsetHeight) + "px";
+        var collapsible = document.querySelector(".navbar-collapse");
+        collapsible.addEventListener("shown.bs.collapse", function () {
+          console.log("show");
+          if (window.innerWidth < 992)
+            document.querySelectorAll(".nav-link").forEach((elem) => {
+              elem.style.color = "black";
+              elem.style.setProperty("--underline-color", "0,0,0");
+            });
+          document.querySelector(".navbar-collapse").style.backgroundColor = "#efefef";
+        });
+        collapsible.addEventListener("hidden.bs.collapse", function () {
+          console.log("hide");
+          if (window.scrollY == 0)
+            document.querySelectorAll(".nav-link").forEach((elem) => {
+              elem.style.color = "";
+              elem.style.setProperty("--underline-color", "255,255,255");
+            });
+          document.querySelector(".navbar-collapse").style.backgroundColor = "transparent";
+        });
+        window.addEventListener("scroll", function () {
+          var navbar = document.querySelector(".navbar");
+          var brandname = document.querySelector(".brandname");
+          var iconborder = document.querySelector(".navbar-toggler");
+          var icon = document.querySelector(".navbar-toggler-icon");
+          var navlinks = document.querySelectorAll(".nav-link");
+          if (window.scrollY > 0) {
+            navlinks.forEach((elem) => {
+              elem.style.color = "black";
+              elem.style.setProperty("--underline-color", "0,0,0");
+            });
+            navbar.classList.add("scroll");
+            brandname.style.color = "black";
+            iconborder.style.borderColor = "black";
+            icon.style.backgroundImage =
+              "url(\"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(0,0,0)' stroke-width='2' stroke-linecap='round' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E\")";
+          } else {
+            navbar.classList.remove("scroll");
+            brandname.style.color = "";
+            iconborder.style.borderColor = "";
+            icon.style.backgroundImage = "";
+            if (!document.querySelector(".navbar-collapse").classList.contains("show") || window.innerWidth > 991) {
+              navlinks.forEach((elem) => {
+                elem.style.color = "";
+                elem.style.setProperty("--underline-color", "255,255,255");
+              });
+              document.querySelector(".navbar-collapse").style.backgroundColor = "transparent";
+            }
+          }
+        });
       });
-    });
-  </script>
-</head>
-<body>
-  <header class="header">
-    <nav class="navbar sticky-top navbar-expand-lg transparent py-0">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="https://drive.google.com/uc?export=view&id=1TY_QP4QNDzLhdhnY8psDb4P1jhQC-er5" class="logo">
-          <h5 class="brandname">SelftaughtVN</h5>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#services">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#portfolio">Portfolio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-          </ul>
+    </script>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar fixed-top navbar-expand-lg transparent py-0">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="https://selftaughtvn.github.io">
+            <img src="https://drive.google.com/uc?export=view&id=1TY_QP4QNDzLhdhnY8psDb4P1jhQC-er5" class="logo" alt="logo" />
+            <h5 class="brandname">SelftaughtVN</h5>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse container-fluid" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sign up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Log in</a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
-    <br><p></p>
-    <h1 class="catchphrase text-center font-weight-bold">Vietnamese eLearning,</h1>
-    <h1 class="catchphrase text-center font-weight-bold">free for all</h1>
-  </header>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-</body>
+      </nav>
+      <br />
+      <p></p>
+      <h1 class="catchphrase text-center font-weight-bold">Vietnamese eLearning,</h1>
+      <h1 class="catchphrase text-center font-weight-bold">free for all</h1>
+    </header>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
 </html>
