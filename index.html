@@ -3,15 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg" href="https://drive.google.com/uc?export=view&id=1pDQIOlfPknoAIMkl6oURU9ixnXCrDlm7" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/necolas/normalize.css/normalize.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&display=swap" />
-    <link rel="icon" type="image/svg" href="https://drive.google.com/uc?export=view&id=1TY_QP4QNDzLhdhnY8psDb4P1jhQC-er5" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Bitter:wght@500&family=Comfortaa&display=swap" />
+    <title>SelftaughtVN</title>
     <style>
       .header {
         background-image: url("https://drive.google.com/uc?export=view&id=1iOoNFnr1EaUfHQk06o3ZRBY_tYWYltSz");
         background-size: cover;
+      }
+      .footer {
+        background: #01faff;
+        background: radial-gradient(at center, #01faff, #00b2e9);
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-top: 40px;
+        text-align: left;
+      }
+
+      .footnote {
+        font-family: Arvo, serif;
+        font-size: 0.875em;
+        font-weight: 400;
+        color: white;
+        margin-bottom: 0;
+        padding-left: 20px;
+      }
+      a.email {
+        color: white;
+        text-decoration: underline white solid auto;
       }
       .logo {
         width: 50px;
@@ -21,13 +44,26 @@
       h5.brandname {
         font-family: Comfortaa, serif;
         font-size: 0.9em;
-        display: inline-block;
         color: white;
       }
       h1.catchphrase {
-        font-family: Bitter, sans-serif;
-        font-size: 2.85em;
+        font-family: Bitter, serif;
+        font-size: 2.75em;
         color: white;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      p.advdesc {
+        font-family: Comfortaa, cursive;
+        font-size: 0.875em;
+        margin-bottom: 0;
+      }
+      h2.advtitle {
+        font-family: Arvo, serif;
+        font-size: 2.125em;
+        font-weight: 700;
+        margin-top: 40px;
+        margin-bottom: 20px;
       }
       .nav-link {
         --underline-color: 255, 255, 255;
@@ -57,14 +93,31 @@
       .collapse.navbar-collapse {
         background-color: transparent;
       }
+      .container {
+        margin-top: 80px;
+        margin-bottom: 80px;
+      }
+      .row {
+        margin-bottom: 40px;
+      }
     </style>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        window.addEventListener("resize", function () {
+          if (window.innerWidth > 767 && window.scrollY == 0) {
+            document.querySelectorAll(".nav-link").forEach((elem) => {
+              elem.style.color = "";
+              elem.style.setProperty("--underline-color", "255,255,255");
+            });
+            collapsible.style.backgroundColor = "transparent";
+            collapsible.classList.remove("show");
+          }
+        });
         document.querySelector(".header").style.paddingTop = String(document.querySelector(".navbar").offsetHeight) + "px";
         var collapsible = document.querySelector(".navbar-collapse");
         collapsible.addEventListener("shown.bs.collapse", function () {
           console.log("show");
-          if (window.innerWidth < 992)
+          if (window.innerWidth < 768)
             document.querySelectorAll(".nav-link").forEach((elem) => {
               elem.style.color = "black";
               elem.style.setProperty("--underline-color", "0,0,0");
@@ -85,6 +138,7 @@
           var brandname = document.querySelector(".brandname");
           var iconborder = document.querySelector(".navbar-toggler");
           var icon = document.querySelector(".navbar-toggler-icon");
+          var collapsible = document.querySelector(".navbar-collapse");
           var navlinks = document.querySelectorAll(".nav-link");
           if (window.scrollY > 0) {
             navlinks.forEach((elem) => {
@@ -101,12 +155,13 @@
             brandname.style.color = "";
             iconborder.style.borderColor = "";
             icon.style.backgroundImage = "";
-            if (!document.querySelector(".navbar-collapse").classList.contains("show") || window.innerWidth > 991) {
+            if (!document.querySelector(".navbar-collapse").classList.contains("show") || window.innerWidth > 767) {
               navlinks.forEach((elem) => {
                 elem.style.color = "";
                 elem.style.setProperty("--underline-color", "255,255,255");
               });
-              document.querySelector(".navbar-collapse").style.backgroundColor = "transparent";
+              collapsible.style.backgroundColor = "transparent";
+              collapsible.classList.remove("show");
             }
           }
         });
@@ -115,25 +170,25 @@
   </head>
   <body>
     <header class="header">
-      <nav class="navbar fixed-top navbar-expand-lg transparent py-0">
+      <nav class="navbar fixed-top navbar-expand-md transparent py-0">
         <div class="container-fluid">
           <a class="navbar-brand" href="https://selftaughtvn.github.io">
             <img src="https://drive.google.com/uc?export=view&id=1TY_QP4QNDzLhdhnY8psDb4P1jhQC-er5" class="logo" alt="logo" />
-            <h5 class="brandname">SelftaughtVN</h5>
+            <h5 class="brandname d-inline-block">SelftaughtVN</h5>
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse container-fluid" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+              <li class="nav-item active">
+                <a class="nav-link" href="selftaughtvn.github.io">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Sign up</a>
+                <a class="nav-link" href="selftaughtvn.github.io/sign-up">Sign up</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Log in</a>
+                <a class="nav-link" href="selftaughtvn.github.io/log-in">Log in</a>
               </li>
             </ul>
           </div>
@@ -143,7 +198,50 @@
       <p></p>
       <h1 class="catchphrase text-center font-weight-bold">Vietnamese eLearning,</h1>
       <h1 class="catchphrase text-center font-weight-bold">free for all</h1>
+      <br />
+      <br />
+      <p></p>
     </header>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h2 class="advtitle">Interactive interface</h2>
+          <br />
+          <p class="advdesc">Spice up the curriculum with interactive and modern course element design.</p>
+        </div>
+        <div class="col placeholder"></div>
+      </div>
+      <div class="row">
+        <div class="col placeholder"></div>
+        <div class="col">
+          <h2 class="advtitle">Self-paced learning</h2>
+          <br />
+          <p class="advdesc">Progress through Vietnamese at your own speed and schedule!</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h2 class="advtitle">Keep the legacy alive</h2>
+          <br />
+          <p class="advdesc">By learning Vietnamese, you're helping to keeping the Vietnamese heritage and traditions alive.</p>
+        </div>
+        <div class="col placeholder"></div>
+      </div>
+    </div>
+    <footer class="footer py-1 px-0">
+      <div class="container">
+        <div class="row">
+          <div class="col text-left">
+            <p class="footnote mb-0">Asking a question? Email <a class="email" href="mailto:rylex.phan@gmail.com">rylex.phan@gmail.com</a></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-left">
+            <p class="footnote mb-0">We wish you a supercalifragilisticexpialidocious day!</p>
+          </div>
+        </div>
+      </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>
 </html>
