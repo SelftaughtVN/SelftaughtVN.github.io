@@ -1,1 +1,51 @@
-.logo{width:50px;height:auto;margin:5px 0 0 25px}h5.brandname{font-family:Comfortaa,serif;font-size:.9em;color:white;display:inline-block}@media only screen and (max-width:359px){h5.brandname{display:none}}.nav-link{--underline-color:255,255,255;color:white;text-decoration:underline rgba(var(--underline-color),0) solid .2em;text-underline-offset:10px;transition:text-decoration-color 300ms}.nav-link:hover{color:white;text-decoration-color:rgba(var(--underline-color),1)}.navbar-toggler{border-color:white}.navbar.transparent{background-color:transparent;transition:background-color .3s ease-in-out}.navbar.scroll{background-color:#efefef;transition:background-color .3s ease-in-out}.navbar-toggler-icon{background-image:url("data:image/svg+xml;charset=utf8,%3CsvgviewBox='003232'xmlns='http://www.w3.org/2000/svg'%3E%3Cpathstroke='rgb(255,255,255)'stroke-width='2'stroke-linecap='round'd='M48h24M416h24M424h24'/%3E%3C/svg%3E")}.collapse.navbar-collapse{background-color:transparent}
+.logo {
+    width: 50px;
+    height: auto;
+    margin: 5px 0px 0px 25px;
+}
+
+h5.brandname {
+    font-family: Comfortaa, serif;
+    font-size: 0.9em;
+    color: white;
+    display: inline-block;
+}
+@media only screen and (max-width: 359px) {
+    h5.brandname {
+        display: none;
+    }
+}
+.nav-link {
+    --underline-color: 255, 255, 255;
+    color: white;
+    text-decoration: underline rgba(var(--underline-color), 0) solid 0.2em;
+    text-underline-offset: 10px;
+    transition: text-decoration-color 300ms;
+}
+
+.nav-link:hover {
+    color: white;
+    text-decoration-color: rgba(var(--underline-color), 1);
+}
+
+.navbar-toggler {
+    border-color: white;
+}
+
+.navbar.transparent {
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.navbar.scroll {
+    background-color: #efefef;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255,255,255)' stroke-width='2' stroke-linecap='round' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.collapse.navbar-collapse {
+    background-color: transparent;
+}
