@@ -4,6 +4,10 @@ class rfooter extends HTMLElement {
     }
     connectedCallback() {
       this.innerHTML= `<style>
+        footer > .container {
+            margin-top: 80px;
+            margin-bottom: 80px;
+        }
         footer {
             background: #01faff;
             background: radial-gradient(at center, #01faff, #00b2e9);
