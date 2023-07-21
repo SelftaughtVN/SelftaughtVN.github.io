@@ -113,7 +113,7 @@ class rNavbar extends HTMLElement {
         <nav class="navbar fixed-top navbar-expand-md transparent py-0">
             <div class="container-fluid">
                 <a class="navbar-brand" href="https://selftaughtvn.github.io">
-                    <img src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Logo.svg" class="logo" alt="logo" />
+                    <img src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" class="logo" alt="logo" />
                     <h5 class="brandname">SelftaughtVN</h5>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
