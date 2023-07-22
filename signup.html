@@ -6,20 +6,28 @@
         <link rel="icon" type="image/svg" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Bitter:wght@500&family=Comfortaa&display=swap" />
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Arvo&family=Comfortaa&display=swap" />
         <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" media="print" onload="this.media='all'" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Bitter:wght@500&family=Comfortaa&display=swap" media="print" onload="this.media='all'" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arvo&family=Comfortaa&display=swap" media="print" onload="this.media='all'" />
         <noscript>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Bitter:wght@500&family=Comfortaa&display=swap" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arvo&family=Comfortaa&display=swap" />
         </noscript>
         <title>Sign up | SelftaughtVN</title>
         <style>
-            body {
+            .atf {
                 min-height: 100vh;
                 padding-top: 67.5px;
-                background-image: linear-gradient(#4baed4, #89e5f2);
+                background-image: linear-gradient(#076FE2, #39D4D8);
+            }
+            h2,p,a {
+                font-family:  Comfortaa, cursive;
+                color: white;
+            }
+            li {
+                color: white;
+                padding-left: 7px;
             }
             .error {
                 color: red;
@@ -37,9 +45,9 @@
                 text-align: center;
                 font-size: 0.8em;
             }
-           .form-group.required label {
+            .form-group.required label {
                margin-bottom: 5px;
-           }
+            }
             .form-control:read-only {
                 background-color: #f4f4f4;
             }
@@ -57,29 +65,42 @@
             <li class="nav-item"><a class="nav-link" href="https://selftaughtvn.github.io/login">Log in</a></li>
         </r-navbar>
         <iframe style="display: none" name="tank" title="Contentless"></iframe>
-        <div class="container" style="margin-top:80px;margin-bottom:80px">
-            <div class="row">
-                <div class="col-md-6 placeholder" >
-
-                </div>
-                <div class="col-md-6 bg-white p-3 rounded border border-3 border-primary">
-                    <form method="POST" action="https://script.google.com/macros/s/AKfycby5PffTz7yLBYgRCSf6WzhS9Xkz4k-sCKuTbc2FGWf8FH0jXaeYfqK8qixVcv6Cq3Hu/exec" target="tank" id="regform">
-                        <div class="form-group required">
-                            <label for="username">Username:</label>
-                            <input type="text" class="form-control" id="username" name="username" pattern="^.{1,20}$" required placeholder="1-20 characters">
-                            <div class="error" id="usererror">Username must be between 1 to 20 characters long</div>
+        <div class="atf">
+            <div class="container" style="padding-top:80px;padding-bottom:80px">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-center">
+                            <h2 style="font-size:2.25em;">Create an account</h2>
+                            <br />
+                            <a href="https://selftaughtvn.github.io/login">Already have one? Log in</a>
                         </div>
-                        <div class="form-group required">
-                            <label for="password">Password:</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="8+ characters and a number" required pattern="^(?=.*[0-9]).{8,}$">
-                            <div class="error" id="pwerror">Password must be at least 8 characters long and contain at least 1 number</div>
-                        </div>
-                        <input type="hidden" id="formtype" name="formtype" value="0">
-                        <div class="form-group d-grid">
-                            <button type="submit" class="btn btn-primary btn-block" disabled id="subbutton">Sign up</button>
-                            <div class="formresult" id="formresult">Account created successfully, please proceed to log in</div>
-                        </div>
-                    </form>
+                        <br /><br />
+                            <ul style="list-style-type: square;">
+                                <li><p>Fun and interactive online lessons</p></li>
+                                <li><p>Throughout pronunciation practice</p></li>
+                                <li><p>Percentage progress tracking</p></li>
+                                <li><p>Printable certificate upon completion</p></li>
+                            </ul>
+                    </div>
+                    <div class="col-md-6 bg-white p-3 rounded border border-3 border-secondary">
+                        <form method="POST" action="https://script.google.com/macros/s/AKfycby5PffTz7yLBYgRCSf6WzhS9Xkz4k-sCKuTbc2FGWf8FH0jXaeYfqK8qixVcv6Cq3Hu/exec" target="tank" id="regform">
+                            <div class="form-group required">
+                                <label for="username" style="margin-top:10px">Username:</label>
+                                <input type="text" class="form-control" id="username" name="username" pattern="^.{1,20}$" required placeholder="1-20 characters">
+                                <div class="error" id="usererror">Username must be between 1 to 20 characters long</div>
+                            </div>
+                            <div class="form-group required">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="8+ characters and a number" required pattern="^(?=.*[0-9]).{8,}$">
+                                <div class="error" id="pwerror">Password must be at least 8 characters long and contain at least 1 number</div>
+                            </div>
+                            <input type="hidden" id="formtype" name="formtype" value="0">
+                            <div class="form-group d-grid">
+                                <button type="submit" class="btn btn-primary btn-block" disabled id="subbutton">Sign up</button>
+                                <div class="formresult" id="formresult">Account created successfully, please proceed to log in</div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
