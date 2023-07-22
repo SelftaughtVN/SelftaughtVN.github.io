@@ -62,11 +62,13 @@ class rNavbar extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
         <style>
-            .logo {
+            img.logo {
+                width: 50px;
+                height: auto;
                 margin: 5px 0px 0px 25px;
             }
             h5.brandname {
-                font-family: Comfortaa, serif;
+                font-family: Comfortaa, cursive;
                 font-size: 0.9em;
                 color: white;
                 display: inline-block;
@@ -76,42 +78,47 @@ class rNavbar extends HTMLElement {
                     display: none;
                 }
             }
-            .nav-link {
+            li.nav-item {
+                all: initial;
+            }
+            a.nav-link {
+                font-family: Comfortaa, cursive;
+                font-size: 0.9em;
                 --underline-color: 255, 255, 255;
                 color: white;
                 text-decoration: underline rgba(var(--underline-color), 0) solid 0.2em;
                 text-underline-offset: 10px;
                 transition: text-decoration-color 300ms;
             }
-            .nav-link:hover {
+            a.nav-link:hover {
                 color: white;
                 text-decoration-color: rgba(var(--underline-color), 1);
             }
-            .navbar {
+            nav.navbar {
                 height: 67.5px;
             }
-            .navbar-toggler {
+            button.navbar-toggler {
                 border-color: white;
             }
-            .navbar.transparent {
+            nav.navbar.transparent {
                 background-color: transparent;
                 transition: background-color 0.3s ease-in-out;
             }
-            .navbar.scroll {
+            nav.navbar.scroll {
                 background-color: #efefef;
                 transition: background-color 0.3s ease-in-out;
             }
-            .navbar-toggler-icon {
+            span.navbar-toggler-icon {
                 background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255,255,255)' stroke-width='2' stroke-linecap='round' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
             }
-            .collapse.navbar-collapse {
+            div.collapse.navbar-collapse {
                 background-color: transparent;
             }
         </style>
         <nav class="navbar fixed-top navbar-expand-md transparent py-0">
             <div class="container-fluid">
                 <a class="navbar-brand" href="https://selftaughtvn.github.io">
-                    <img src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" width="50px" height="50px"class="logo" alt="logo" />
+                    <img src="https://drive.google.com/uc?export=view&id=1TY_QP4QNDzLhdhnY8psDb4P1jhQC-er5" class="logo" alt="logo" />
                     <h5 class="brandname">SelftaughtVN</h5>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
