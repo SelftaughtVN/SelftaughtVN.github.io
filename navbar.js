@@ -63,8 +63,6 @@ class rNavbar extends HTMLElement {
         this.innerHTML = `
         <style>
             .logo {
-                width: 50px;
-                height: auto;
                 margin: 5px 0px 0px 25px;
             }
             h5.brandname {
@@ -113,7 +111,7 @@ class rNavbar extends HTMLElement {
         <nav class="navbar fixed-top navbar-expand-md transparent py-0">
             <div class="container-fluid">
                 <a class="navbar-brand" href="https://selftaughtvn.github.io">
-                    <img src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" class="logo" alt="logo" />
+                    <img src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" width="50px" height="50px"class="logo" alt="logo" />
                     <h5 class="brandname">SelftaughtVN</h5>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
