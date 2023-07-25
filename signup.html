@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" title="SelftaughtVN Sign up">
+<html lang="en" dir="ltr">
     <head>
         <script>
             if((/^(.*;)?\s*__Host-sessionid\s*=\s*[^;]+(.*)?$/).test(document.cookie)) {
@@ -13,9 +13,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="prefetch" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" />
         <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" onload="this.rel='stylesheet'">
-        <link rel="preload" as="style"href="https://fonts.googleapis.com/css2?family=Arvo&family=Comfortaa&display=swap" onload="this.rel='stylesheet'" />
-        <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" />      
-        <script src="https://cdn.jsdelivr.net/combine/gh/SelftaughtVN/SelftaughtVN.github.io@main/navbar.js,gh/SelftaughtVN/SelftaughtVN.github.io@main/footer.js" defer crossorigin></script>
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Arvo&family=Comfortaa&display=swap" onload="this.rel='stylesheet'" />
+        <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" />
+        <script src="https://cdn.jsdelivr.net/combine/gh/SelftaughtVN/SelftaughtVN.github.io@main/footer.js,gh/SelftaughtVN/SelftaughtVN.github.io@main/navbar.js" defer crossorigin></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin async defer></script>
         <noscript>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
@@ -28,36 +28,44 @@
                 padding-top: 67.5px;
                 background-image: linear-gradient(#076FE2, #39D4D8);
             }
-            h2,p,a {
-                font-family:  Comfortaa, cursive;
+    
+            h2, p, a {
+                font-family: Comfortaa, cursive;
                 color: white;
             }
+    
             li {
                 color: white;
                 padding-left: 7px;
             }
+    
             .error {
                 color: red;
-                font-size: 0.85em;
+                font-size: 0.8em;
                 visibility: hidden;
                 margin-top: 8px;
                 margin-bottom: 8px;
             }
+    
             .error#pwerror {
                 margin-bottom: 20px;
             }
+    
             .formresult {
                 margin-top: 10px;
                 visibility: hidden;
                 text-align: center;
-                font-size: 0.9em;
+                font-size: 0.8em;
             }
+    
             .form-group.required label {
-               margin-bottom: 5px;
+                margin-bottom: 5px;
             }
+    
             .form-control:read-only {
                 background-color: #f4f4f4;
             }
+    
             .form-group.required label:after {
                 color: #e32;
                 content: " *";
@@ -82,25 +90,25 @@
                             <a href="https://selftaughtvn.github.io/login">Already have one? Log in</a>
                         </div>
                         <br /><br />
-                            <ul style="list-style-type: square;">
-                                <li><p>Fun and interactive online lessons</p></li>
-                                <li><p>Throughout pronunciation practice</p></li>
-                                <li><p>Percentage progress tracking</p></li>
-                                <li><p>Printable certificate upon completion</p></li>
-                            </ul>
+                        <ul style="list-style-type: square;">
+                            <li><p>Fun and interactive online lessons</p></li>
+                            <li><p>Throughout pronunciation practice</p></li>
+                            <li><p>Percentage progress tracking</p></li>
+                            <li><p>Printable certificate upon completion</p></li>
+                        </ul>
                     </div>
                     <div class="col-md-6 bg-white p-3 rounded border border-3 border-secondary">
                         <form method="POST" action="https://script.google.com/macros/s/AKfycby5PffTz7yLBYgRCSf6WzhS9Xkz4k-sCKuTbc2FGWf8FH0jXaeYfqK8qixVcv6Cq3Hu/exec" target="tank" id="regform">
                             <div class="form-group required">
                                 <label for="username" style="margin-top:10px">Username:</label>
                                 <input type="text" class="form-control" id="username" name="username" pattern="^.{1,20}$" required placeholder="1-20 characters">
-                                <div class="error" id="usererror">Username must be between 1 to 20 characters long</div>
                             </div>
+                            <div class="error" id="usererror">Username must be between 1 to 20 characters long</div>
                             <div class="form-group required">
                                 <label for="password">Password:</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="8+ characters and a number" required pattern="^(?=.*[0-9]).{8,}$">
-                                <div class="error" id="pwerror">Password must be at least 8 characters long and contain at least 1 number</div>
                             </div>
+                            <div class="error" id="pwerror">Password must be at least 8 characters long and contain at least 1 number</div>
                             <input type="hidden" id="formtype" name="formtype" value="0">
                             <div class="form-group d-grid">
                                 <button type="submit" class="btn btn-primary btn-block" disabled id="subbutton">Sign up</button>
@@ -121,11 +129,11 @@
             var formresult = document.getElementById("formresult")
             var formtype = document.getElementById("formtype")
             window.addEventListener("message", (ev) => {
-                if (ev.origin == "https://n-445lurmcehpaetoyzoy6p3j3ufi35ggqlsymxli-0lu-script.googleusercontent.com") {
+                if(ev.origin == "https://n-445lurmcehpaetoyzoy6p3j3ufi35ggqlsymxli-0lu-script.googleusercontent.com") {
                     usernameF.readOnly = passwordF.readOnly = false;
                     subbutton.textContent = "Sign up";
                     subbutton.disabled = false;
-                    switch (ev.data) {
+                    switch(ev.data) {
                         case "0":
                             passwordF.setAttribute("pattern", "^(?=.*[0-9]).{8,}$");
                             invalidMsg(passwordF, "pwerror");
@@ -154,15 +162,16 @@
                             break;
                     }
                 }
-            },true)
+                document.getElementsByName("tank")[0].src = "about:blank"
+            }, true)
+    
             function invalidMsg(container, msgelem, cmsg = undefined) {
-                if (cmsg != undefined) {
+                if(cmsg != undefined) {
                     document.getElementById(msgelem).textContent = cmsg;
                 }
-                if (container.validity.patternMismatch) {
+                if(container.validity.patternMismatch) {
                     document.getElementById(msgelem).style.visibility = "visible";
-                }
-                else {
+                } else {
                     document.getElementById(msgelem).style.visibility = "hidden";
                 }
             }
@@ -176,10 +185,9 @@
                 });
                 usernameF.addEventListener("keyup", () => {
                     formtype.value = "0";
-                    if (!form.checkValidity() || usernameF.readOnly) {
+                    if(!form.checkValidity() || usernameF.readOnly) {
                         subbutton.disabled = true;
-                    }
-                    else {
+                    } else {
                         subbutton.disabled = false;
                     }
                 });
@@ -187,16 +195,14 @@
                     e.preventDefault();
                     invalidMsg(usernameF, "usererror", "Username must be between 1 to 20 characters long");
                 });
-                usernameF.addEventListener("input", (e) => {
-                    e.preventDefault();
+                usernameF.addEventListener("input", () => {
                     invalidMsg(usernameF, "usererror", "Username must be between 1 to 20 characters long");
                 });
                 passwordF.addEventListener("keyup", () => {
                     formtype.value = "0";
-                    if (!form.checkValidity() || passwordF.readOnly) {
+                    if(!form.checkValidity() || passwordF.readOnly) {
                         subbutton.disabled = true;
-                    }
-                    else {
+                    } else {
                         subbutton.disabled = false;
                     }
                 });
@@ -204,8 +210,7 @@
                     e.preventDefault();
                     invalidMsg(passwordF, "pwerror");
                 });
-                passwordF.addEventListener("input", (e) => {
-                    e.preventDefault();
+                passwordF.addEventListener("input", () => {
                     invalidMsg(passwordF, "pwerror");
                 });
             })
