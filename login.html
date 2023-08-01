@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <script>
-            if((/^(.*;)?\s*__Secure-sessionid\s*=\s*[^;]+(.*)?$/).test(document.cookie)) {
+            if((/^(.*;)?\s*__Host-sessionid\s*=\s*[^;]+(.*)?$/).test(document.cookie)) {
                 window.location.replace("https://selftaughtvn.github.io/learn")
             }
         </script>
@@ -159,7 +159,7 @@
                             }, 1500);
                             break;
                         default:       
-                            this.document.cookie = "__Secure-sessionid=" + ev.data + "; path=/; Max-Age=31536000; SameSite=Strict; Secure"
+                            this.document.cookie = "__Host-sessionid=" + ev.data + "; path=/; Max-Age=31536000; SameSite=Strict; Secure"
                             window.location.replace("https://selftaughtvn.github.io/learn")
                     }
                 }
