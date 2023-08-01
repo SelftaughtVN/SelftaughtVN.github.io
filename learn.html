@@ -45,13 +45,14 @@
             <h3>Please enable Javascript to view website.</h3>
         </noscript>
         <div class="page">
+             <iframe style="display: none" name="tank" title="Contentless"></iframe>
             <r-navbar>
                 <li class="nav-item">
                     <div class="dropdown">
                         <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">[username]</button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <form id="logout" action="https://script.google.com/macros/s/AKfycby5PffTz7yLBYgRCSf6WzhS9Xkz4k-sCKuTbc2FGWf8FH0jXaeYfqK8qixVcv6Cq3Hu/exec" target="_self">
+                                <form id="logout" method="POST" action="https://script.google.com/macros/s/AKfycby5PffTz7yLBYgRCSf6WzhS9Xkz4k-sCKuTbc2FGWf8FH0jXaeYfqK8qixVcv6Cq3Hu/exec" target="tank">
                                     <button id="logoutB" class="dropdown-item" type="submit">Log out</button>
                                     <input name="formtype" id="formtype" type="hidden" readonly value="2"/>
                                     <input name="sessionid" id="sessionid" type="hidden" readonly />
@@ -71,6 +72,7 @@
                     document.getElementById('formtype').value = "2";
                     document.getElementById('sessionid').value = document.cookie.match('(^|;)\\s*__Host-sessionid\\s*=\\s*([^;]+)')?.pop()
                     document.cookie = '__Host-sessionid=0; path=/; Max-Age=0; SameSite=Strict; Secure';
+                    window.location.replace("https://selftaughtvn.github.io")
                 })
             })
             window.addEventListener("load", () => {
