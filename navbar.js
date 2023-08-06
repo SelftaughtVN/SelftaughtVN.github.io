@@ -94,6 +94,9 @@ class rNavbar extends HTMLElement {
                 color: white;
                 text-decoration-color: rgba(var(--underline-color), 1);
             }
+            button.nav-link:focus {
+                color: white;
+            }
             nav.navbar {
                 height: 67.5px;
             }
