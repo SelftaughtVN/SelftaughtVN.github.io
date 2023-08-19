@@ -25,6 +25,7 @@ class rfooter extends HTMLElement {
             <div class="container">
                 <p class="footnote">Asking a question? Email <a class='email' href="mailto:rylex.phan@gmail.com">rylex.phan@gmail.com</a></p>
                 <p class="footnote">We wish you a supercalifragilisticexpialidocious day!</p>
+                <p class="footnote"><em>*Warning: This site is still in construction!*</em></p>
             </div>
         </footer>`
     }
