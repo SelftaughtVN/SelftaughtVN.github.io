@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
-        <script>
+        <!--<script>
             if(!(/^(.*;)?\s*__Host-sessionid\s*=\s*[^;]+(.*)?$/).test(document.cookie)) {
                 window.location.replace("https://selftaughtvn.github.io")
             }
-        </script> 
+        </script>--> 
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Sign up to learn vietnamese with SelftaughtVN" />
         <link rel="icon" type="image/svg" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Favicon.svg" />
@@ -16,8 +16,9 @@
         <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Arvo&family=Comfortaa&display=swap" onload="this.rel='stylesheet'" />
         <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" />
         <script src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/navbar.js" defer crossorigin></script>
-        <script src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/footer.js" async crossorigin></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin async defer></script>
+        <script src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/footer.js" async defer crossorigin></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" async defer crossorigin ></script>
+        <script src="slide.js" defer></script>
         <noscript>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arvo&family=Comfortaa&display=swap" />
@@ -25,11 +26,8 @@
         <title>Learn | SelftaughtVN</title>
         <style>
             .page {
+                border-top: 67.5px solid #0088F4;
                 display: none;
-            }
-
-            .atf {
-                border-top: 67.5px solid #1994DE;
             }
         </style>
     </head>
@@ -55,9 +53,17 @@
                     </div>
                 </li>
             </r-navbar>
-            <div class="atf">
-                <r-footer></r-footer>
-            </div>
+            <r-slide>
+                <div class="carousel-item active">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">First slide</text></svg>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"></rect><text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text></svg>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#555"></rect><text x="50%" y="50%" fill="#333" dy=".3em">Third slide</text></svg>
+                </div>
+            </r-slide>
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", () => {
