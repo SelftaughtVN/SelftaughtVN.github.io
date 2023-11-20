@@ -12,7 +12,7 @@ class rfooter extends HTMLElement {
         }
         .footnote {
             font-family: Arvo, serif;
-            font-size: 0.875em;
+            font-size: 0.875rem;
             font-weight: 400;
             color: white;
         }
