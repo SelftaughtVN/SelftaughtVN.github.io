@@ -5,10 +5,13 @@ class rSlide extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
         <style>
-        .carousel-control-prev, .carousel-control-next {
+        button.carousel-control-prev, button.carousel-control-next {
             width: 2rem;
             height: 2rem;
             margin: 10px 10px 10px 10px;
+        }
+        div.carousel-item {
+            height: calc(100vh - 67.5px);
         }
         </style>
         <div id="carousel" class="carousel slide">        

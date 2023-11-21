@@ -122,7 +122,7 @@ class rNavbar extends HTMLElement {
         </style>
         <nav class="navbar fixed-top navbar-expand-md transparent py-0">
             <div class="container-fluid">
-                <a class="navbar-brand" href="https://selftaughtvn.github.io">
+                <a class="navbar-brand" href="/">
                     <img src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" width="50px" height="50px" class="logo" alt="logo" />
                     <h5 class="brandname">SelftaughtVN</h5>
                 </a>

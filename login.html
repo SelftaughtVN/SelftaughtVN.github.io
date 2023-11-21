@@ -3,7 +3,7 @@
     <head>
         <script>
             if((/^(.*;)?\s*__Host-sessionid\s*=\s*[^;]+(.*)?$/).test(document.cookie)) {
-                window.location.replace("https://selftaughtvn.github.io/learn")
+                window.location.replace("/dashboard.html")
             }
         </script>
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -95,7 +95,7 @@
                             <div class="text-center">
                                 <h2 style="font-size:2.25rem;">Log in</h2>
                                 <br />
-                                <a href="https://selftaughtvn.github.io/signup">Don't have an account? Sign up</a>
+                                <a href="/signup.html">Don't have an account? Sign up</a>
                             </div>
                             <br /><br />
                             <ul style="list-style-type: square;">
@@ -139,9 +139,8 @@
             var formtype = document.getElementById("formtype")
             window.addEventListener("message", (ev) => {
                 if(ev.origin == "https://n-445lurmcehpaetoyzoy6p3j3ufi35ggqlsymxli-0lu-script.googleusercontent.com") {
-                    usernameF.readOnly = passwordF.readOnly = false;
+                    usernameF.readOnly = passwordF.readOnly = subbutton.disabled = false;
                     subbutton.textContent = "Sign up";
-                    subbutton.disabled = false;
                     switch(ev.data) {
                         case "0":
                             usernameF.setAttribute("pattern", "^.{1,20}$");
@@ -161,7 +160,7 @@
                             break;
                         default:       
                             this.document.cookie = "__Host-sessionid=" + ev.data + "; path=/; Max-Age=31536000; SameSite=Strict; Secure"
-                            window.location.replace("https://selftaughtvn.github.io/learn")
+                            window.location.replace("/dashboard.html")
                     }
                 }
                 document.getElementsByName("tank")[0].src = "about:blank"
