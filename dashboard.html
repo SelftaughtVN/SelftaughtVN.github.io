@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+         <!--<script> 
+             if(!(/^(.*;)?\s*__Host-sessionid\s*=\s*[^;]+(.*)?$/).test(document.cookie)) { 
+                 window.location.replace("/") 
+             } 
+         </script>-->
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Sign up and learn Vietnamese online in an interactive and fun way, at your own pace and schedule!" />
+        <meta name="google-site-verification" content="lmC9nLdwi942N4bamB2Yx1rvxqZ5fZM7jnUAIJ_wxpg" />
+        <link rel="icon" type="image/svg" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="prefetch" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" />
+        <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" onload="this.rel='stylesheet'">
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Bitter:wght@500&family=Comfortaa&display=swap" onload="this.rel='stylesheet'" />
+        <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" />
+        <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/header.jpg" />    
+        <script src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/navbar.js" defer crossorigin></script>
+        <script src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/footer.js" async crossorigin></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin async defer></script>
+        <noscript>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Bitter:wght@500&family=Comfortaa&display=swap" />
+        </noscript>
+        <title>SelftaughtVN | Dashboard</title>
+        <style>
+            .page {
+                border-top: 67.5px solid #00BFED;
+                display: none;
+            }
+            li, summary, summary::-webkit-details-marker {
+                list-style: none;
+            }
+            details li:not(.dropdown-menu > li) {
+                padding-left: 1rem;
+                border-left: 2px solid #000000;
+            }   
+      
+        </style>
+    </head>
+    <body>
+        <div class="page">
+            <r-navbar>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">[username]</button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <form id="logout" method="POST" action="https://script.google.com/macros/s/AKfycbwkCKonxlPJMcRawoowMfvmpwpn7PR-8hkFSkJ_oQBga6x3ndro5QWP0xaZhB5dJcYU/exec" target="tank">
+                                    <button id="logoutB" class="dropdown-item" type="submit">Log out</button>
+                                    <input name="formtype" id="formtype" type="hidden" readonly value="2" />
+                                    <input name="sessionid" id="sessionid" type="hidden" readonly />
+                                </form>
+                            </li>
+                            <li>
+                                <button id="settings" class="dropdown-item" type="button">Settings</button> 
+                            </li>
+                            <li>
+                                <button id="help" class="dropdown-item" type="button">Help</button> 
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </r-navbar>
+            <ul>
+                <li>
+                    <details open><summary>Level 1: The Base of Vietnamese</summary>
+                        <ul>
+                            <li>Objectives and notes</li>
+                            <li><details>
+                                <summary>Unit 1: Introduction</summary>
+                                <ul>
+                                    <li>Why Vietnamese?</li>
+                                    <li>Vietnamese Typography</li>
+                                </ul> 
+                            </details></li><li><details>
+                                <summary>Unit 2: Alphabet & Tones</summary>
+                                <ul>
+                                    <li>Alphabet</li>
+                                    <li>Tones</li>
+                                </ul>  
+                            </details></li><li><details>
+                                <summary>Unit 3: Combining letters & Simple syllables</summary> 
+                                <ul>
+                                    <li>Combining Letters and Decomposing Words</li>
+                                    <li>Digraphs: th, ch, tr, ph</li>
+                                    <li>More Digraphs: nh, kh, ng-ngh, g-gh-gi</li>
+                                    <li>Half-unit Quiz</li>
+                                    <li>One-letter Syllables: a, e, ê, i</li>
+                                    <li>One-letter Syllables: o, ô, u, ư, y</li>
+                                    <li>One-letter words</li>
+                                    <li>Unit test</li>
+                                </ul>
+                            </details></li><li><details>
+                                <summary>Unit 4: Two-letter Syllables</summary>
+                                <ul>
+                                    <li>oi, ai, ôi ơi</li>
+                                    <li>ua, ưa, ui, ưi</li>
+                                    <li>eo, ao, au, âu</li>
+                                    <li>Half-unit Quiz</li>
+                                    <li>on, an, ân, ăn</li>
+                                    <li>ay, ây, iu, êu</li>
+                                    <li>en, ên, un, ơn</li>
+                                    <li>Unit test</li>
+                                </ul> 
+                            </details></li><li><details>
+                                <summary>Unit 5: Three-letter syllables </summary>
+                                <ul>
+                                    <li>ăng, âng, ung, ưng</li>
+                                    <li>uôi, ươi, iêu, ươu</li>
+                                    <li>uôn, ươn, ong, ông</li>
+                                    <li>Half-unit Quiz</li>
+                                    <li>eng, ang, anh, inh</li>
+                                    <li>ênh, iêm, uôm, ươm</li>
+                                    <li>uôt, ươt, uôc, iêc</li>
+                                    <li>Unit test</li>
+                                </ul>
+                            </details></li><li><details>
+                                <summary>Unit 6: Four-letter Syllables</summary> 
+                                <ul>
+                                    <li>uông, ương, iêng, uyên</li>
+                                    <li>uyêt, oang, oanh, oăng</li>
+                                    <li>oach, uynh, uych, uênh</li>
+                                </ul>
+                            </details></li>
+                            <li>Level test</li>
+                        </ul>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <ul><li>Coming Soon</li></ul>
+                        <summary>Level 2: The Intermediate Vietnamese</summary>
+                    </details>
+                </li>
+            </ul>
+            <r-footer></r-footer>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                document.getElementById('logout').addEventListener('submit', () => {
+                    document.getElementById('formtype').value = "2";
+                    document.getElementById('sessionid').value = document.cookie.match('(^|;)\\s*__Host-sessionid\\s*=\\s*([^;]+)')?.pop()
+                    document.cookie = '__Host-sessionid=0; path=/; Max-Age=0; SameSite=Strict; Secure';
+                    window.location.replace("/")
+                })
+                document.getElementById('settings').addEventListener('click', () => {
+                    window.location.assign("/settings.html")
+                })
+                document.getElementById('help').addEventListener('click', () => {
+                    window.location.assign("/help.html")
+                })
+            })
+            window.addEventListener("load", () => {
+                document.querySelector(".page").style.display = "block";
+            })
+        </script>
+    </body>
+</html>
