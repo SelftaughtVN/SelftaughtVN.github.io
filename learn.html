@@ -7,7 +7,8 @@
             }
         </script>--> 
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Sign up to learn vietnamese with SelftaughtVN" />
+        <meta name="description" content="User studying page of SelftaughtVN" />
+        <meta name="robots" content="noindex nofollow">
         <link rel="icon" type="image/svg" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,7 +26,7 @@
         <title>Learn | SelftaughtVN</title>
         <style>
             .page {
-                border-top: 67.5px solid #00BFED;
+                border-top: 67.5px solid #2487ff;
                 display: none;
             }         
         </style>
@@ -49,13 +50,13 @@
                                 </form>
                             </li>
                             <li>
-                                <button id="dashboard" class="dropdown-item" type="button">Dashboard</button> 
+                                <a class="dropdown-item" href="/dashboard.html">Dashboard</a> 
                             </li>
                             <li>
-                                <button id="settings" class="dropdown-item" type="button">Settings</button> 
+                                <a class="dropdown-item" href="/settings.html">Settings</a>
                             </li>
                             <li>
-                                <button id="help" class="dropdown-item" type="button">Help</button> 
+                                <a class="dropdown-item" href="/help.html">Help</a>
                             </li>
                         </ul>
                     </div>
@@ -80,15 +81,6 @@
                     document.getElementById('sessionid').value = document.cookie.match('(^|;)\\s*__Host-sessionid\\s*=\\s*([^;]+)')?.pop()
                     document.cookie = '__Host-sessionid=0; path=/; Max-Age=0; SameSite=Strict; Secure';
                     window.location.replace("/")
-                })
-                document.getElementById('dashboard').addEventListener('click', () => {
-                    window.location.assign("/dashboard.html")
-                })
-                document.getElementById('settings').addEventListener('click', () => {
-                    window.location.assign("/settings.html")
-                })
-                document.getElementById('settings').addEventListener('click', () => {
-                    window.location.assign("/help.html")
                 })
              })
             window.addEventListener("load", () => {
