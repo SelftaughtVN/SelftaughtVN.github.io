@@ -214,6 +214,22 @@
                     document.cookie = '__Host-sessionid=0; path=/; Max-Age=0; SameSite=Strict; Secure';
                     window.location.replace("/")
                 })
+                modelSize = 55 //Model size in MB
+                if(!DecompressionStream) {
+                    alert("Your browser doesn't support DecompressionStream")
+                    return
+                }
+                if(!navigator.storage.getDirectory()) {
+                    alert("Your browser doesn't support OPFS")
+                    return
+                }
+                navigator.storage.estimate().then(estimate => {
+                    if(!(estimate.quota/1024/1024 > modelSize)) {
+                        alert("Please clear out at least ", modelSize, "MB in browser storage space to load the speech recognition model.")
+                        return
+                    }
+                })
+                model = new Worker("asr.js")
             })
             window.addEventListener("load", () => {
                 document.querySelector(".page").style.display = "block";
