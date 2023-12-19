@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+         <!--<script> 
+             if(!(/^(.*;)?\s*__Host-sessionid\s*=\s*[^;]+(.*)?$/).test(document.cookie)) { 
+                 window.location.replace("/") 
+             } 
+         </script>-->
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="User settings page for SelftaughtVN" />
+        <meta name="robots" content="noindex nofollow">
+        <link rel="icon" type="image/svg" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="prefetch" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" />
+        <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" onload="this.rel='stylesheet'">
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Bitter:wght@500&family=Comfortaa&display=swap" onload="this.rel='stylesheet'" />
+        <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/Images/Logo.svg" />
+        <script src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/navbar.js" defer crossorigin></script>
+        <script src="https://cdn.jsdelivr.net/gh/SelftaughtVN/SelftaughtVN.github.io@main/footer.js" async crossorigin></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin async defer></script>
+        <noscript>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Bitter:wght@500&family=Comfortaa&display=swap" />
+        </noscript>
+        <title>SelftaughtVN | Dashboard</title>
+        <style>
+            .page {
+                border-top: 67.5px solid #2487ff;
+                display: none;
+            }  
+        </style>
+    </head>
+    <body>
+        <noscript>
+            <h3>Please enable Javascript to view website.</h3>
+        </noscript>
+        <div class="page">
+            <iframe style="display: none" name="tank" title="Contentless"></iframe>
+            <r-navbar>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">[username]</button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <form id="logout" method="POST" action="https://script.google.com/macros/s/AKfycbwkCKonxlPJMcRawoowMfvmpwpn7PR-8hkFSkJ_oQBga6x3ndro5QWP0xaZhB5dJcYU/exec" target="tank">
+                                    <button id="logoutB" class="dropdown-item" type="submit">Log out</button>
+                                    <input name="formtype" id="formtype" type="hidden" readonly value="2" />
+                                    <input name="sessionid" id="sessionid" type="hidden" readonly />
+                                </form>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/dashboard.html">Dashboard</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/help.html">Help</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </r-navbar>
+            <r-footer></r-footer>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                document.getElementById('logout').addEventListener('submit', () => {
+                    document.getElementById('formtype').value = "2";
+                    document.getElementById('sessionid').value = document.cookie.match('(^|;)\\s*__Host-sessionid\\s*=\\s*([^;]+)')?.pop()
+                    document.cookie = '__Host-sessionid=0; path=/; Max-Age=0; SameSite=Strict; Secure';
+                    window.location.replace("/")
+                })
+            })
+            window.addEventListener("load", () => {
+                document.querySelector(".page").style.display = "block";
+            })
+        </script>
+    </body>
+</html>

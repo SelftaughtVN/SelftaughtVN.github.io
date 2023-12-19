@@ -1,0 +1,1 @@
+Files inside src are easily read source code. Files outside the src folder are for deployments
