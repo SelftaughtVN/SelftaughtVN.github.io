@@ -1,7 +1,6 @@
 #include <assert.h>
 #include <dirent.h>
 #include <fcntl.h>
-#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -212,7 +211,6 @@ int main(int argc, char* argv[]) {
   err = access("/opfs/working", F_OK);
   assert(err == -1);
   emscripten_console_log("removed OPFS directory");
-
   emscripten_console_log("done");
 
 #endif // !WASMFS_SETUP
