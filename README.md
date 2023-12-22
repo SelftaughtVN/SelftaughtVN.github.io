@@ -1,4 +1,5 @@
 # Overview
+
 SelftaughtVN is a free Vietnamese learning website that provides basic-to-advance 4-skill Vietnamese practice. This repository hosts the code for SelftaughtVN.github.io
 
 Files are organized into two categories. Inside the "src" folder are easy-to-read source code. Files outside it are for deployments to the actual webpage where they are optimized for loading.
@@ -11,8 +12,8 @@ Following this will build the whole website from the source, currently only avai
 git clone https://github.com/SelftaughtVN/SelftaughtVN.github.io -b asr-implementation --single-branch && 
 source $HOME/emsdk/emsdk_env.sh &&
 cd $HOME/libarchive-3.7.2 &&
-emconfigure ./configure &&
+emconfigure ./configure --without-lz4 --without-lzma --without-lzo2 --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat  &&
 emmake make -sSIDE_MODULE=1 && 
 cd $HOME/SelftaughtVN.github.io &&
-em++ asr.cpp -flto=full -O3 -sWASMFS -sWASM_BIGINT -sSUPPORT_BIG_ENDIAN -sPROXY_TO_PTHREAD -pthread -I$HOME/libarchive-3.7.2/libarchive -L$HOME/libarchive-3.7.2/.libs -larchive -lopfs.js -o asr.js
+source $HOME/emsdk/emsdk_env.sh && em++ ${relativeFile} -O3 -sWASMFS -sWASM_BIGINT -sSUPPORT_BIG_ENDIAN -sINITIAL_MEMORY=35mb -sPROXY_TO_PTHREAD -pthread -I$HOME/libarchive-3.7.2/libarchive -L$HOME/libarchive-3.7.2/.libs -larchive -lopfs.js -o ${fileBasenameNoExtension}.js
 ```

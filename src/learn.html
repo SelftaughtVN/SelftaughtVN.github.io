@@ -81,13 +81,13 @@
                     document.getElementById('sessionid').value = document.cookie.match('(^|;)\\s*__Host-sessionid\\s*=\\s*([^;]+)')?.pop()
                     document.cookie = '__Host-sessionid=0; path=/; Max-Age=0; SameSite=Strict; Secure';
                     window.location.replace("/")
-                })
-                var worker = new Worker('../asr.js')    
+                })   
             })
             window.addEventListener("load", () => {
                 document.querySelector(".page").style.display = "block";
             })
 
         </script>
+        <script defer src="../asr.js"></script>
     </body>
 </html>
