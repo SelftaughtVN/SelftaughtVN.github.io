@@ -17,5 +17,5 @@ cd $HOME/libarchive-3.7.2 &&
 emconfigure ./configure --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --disable-shared --enable-bsdtar=static CPPFLAGS=-I$HOME/zstd-1.5.5/lib LDFLAGS=-L$HOME/zstd-1.5.5/lib &&
 emmake make && 
 cd $HOME/SelftaughtVN.github.io &&
-em++ -O3 src/asr.cpp -sWASMFS -sWASM_BIGINT -sSUPPORT_BIG_ENDIAN -sINITIAL_MEMORY=35mb -sPTHREAD_POOL_SIZE=2 -pthread -sPROXY_TO_PTHREAD -I$HOME/libarchive-3.7.2/libarchive -L$HOME/libarchive-3.7.2/.libs -larchive -L$HOME/zstd-1.5.5/lib -lzstd -lopfs.js -o asr.js
+em++ -O3 src/asr.cpp -sWASMFS -sWASM_BIGINT -sSUPPORT_BIG_ENDIAN -sINITIAL_MEMORY=35mb -sPTHREAD_POOL_SIZE=2 -pthread -I$HOME/libarchive-3.7.2/libarchive -L$HOME/libarchive-3.7.2/.libs -larchive -L$HOME/zstd-1.5.5/lib -lzstd -lopfs.js -o asr.js
 ```

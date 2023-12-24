@@ -2,10 +2,10 @@
 #include <emscripten/console.h>
 #include <archive.h>
 #include <emscripten.h>
-#include <fcntl.h>
 #include <archive_entry.h>
 #include <string>
-void extractModel(const char* filename) {
+#include <pthread.h>
+void extract(const char* filename) {
   std::string path{"opfs/"};
   archive* src {archive_read_new()};
   archive_entry* entry {};
@@ -20,12 +20,16 @@ void extractModel(const char* filename) {
   }
   archive_read_free(src);
 }
-void onerror(const char* filename) {
-  emscripten_console_errorf("Couldn't fetch %s", filename);
-}
 int main() {
-  Backend* opfs {wasmfs_create_opfs_backend()};
-  wasmfs_create_directory("opfs", 0777, opfs);
-  emscripten_async_wget("../model.tzst", "opfs/model.tzst", extractModel, onerror);
+  pthread_t pt {};
+  pthread_create(&pt, nullptr, [](void* dummy) -> void*{
+    pthread_detach(pthread_self());
+    Backend* opfs {wasmfs_create_opfs_backend()};
+    wasmfs_create_directory("opfs", 0777, opfs);
+    emscripten_async_wget("../model.tzst", "opfs/model.tzst", extract, [](const char* filename){
+      emscripten_console_errorf("Couldn't fetch %s", filename);
+    });
+    return nullptr;
+  },nullptr);
 }
 
