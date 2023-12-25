@@ -4,7 +4,8 @@
 #include <emscripten.h>
 #include <archive_entry.h>
 #include <string>
-#include <pthread.h>
+#include <filesystem>
+namespace fs = std::filesystem;
 void extract(const char* filename) {
   std::string path{"opfs/"};
   archive* src {archive_read_new()};
@@ -26,10 +27,24 @@ int main() {
     pthread_detach(pthread_self());
     Backend* opfs {wasmfs_create_opfs_backend()};
     wasmfs_create_directory("opfs", 0777, opfs);
-    emscripten_async_wget("../model.tzst", "opfs/model.tzst", extract, [](const char* filename){
-      emscripten_console_errorf("Couldn't fetch %s", filename);
-    });
+    if(!(fs::exists("opfs/model/am/final.mdl") &&
+    fs::exists("opfs/model/conf/mfcc.conf") &&
+    fs::exists("opfs/model/conf/model.conf") &&
+    fs::exists("opfs/model/graph/phones/word_boundary.int") &&
+    fs::exists("opfs/model/graph/Gr.fst") &&
+    fs::exists("opfs/model/graph/HCLr.fst") &&
+    fs::exists("opfs/model/graph/disambig_tid.int") &&
+    fs::exists("opfs/model/ivector/final.dubm") &&
+    fs::exists("opfs/model/ivector/final.ie") &&
+    fs::exists("opfs/model/ivector/final.mat") &&
+    fs::exists("opfs/model/ivector/global_cmvn.stats") &&
+    fs::exists("opfs/model/ivector/online_cmvn.conf") &&
+    fs::exists("opfs/model/ivector/splice.conf"))) {
+      emscripten_async_wget("../model.tzst", "opfs/model.tzst", extract, [](const char* filename){
+        emscripten_console_errorf("Couldn't fetch %s", filename);
+      });
+    }
+    fs::remove("opfs/model.tzst");
     return nullptr;
   },nullptr);
 }
-
