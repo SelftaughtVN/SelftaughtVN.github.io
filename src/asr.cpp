@@ -1,7 +1,7 @@
 #include <emscripten/wasmfs.h>
 #include <emscripten/console.h>
-#include <archive.h>
 #include <emscripten.h>
+#include <archive.h>
 #include <archive_entry.h>
 #include <string>
 #include <filesystem>
@@ -44,7 +44,7 @@ int main() {
         emscripten_console_errorf("Couldn't fetch %s", filename);
       });
     }
-    fs::remove("opfs/model.tzst");
+    fs::remove("opfs/model.tzst"); //Remove if possible, see https://github.com/emscripten-core/emscripten/issues/20977
     return nullptr;
   },nullptr);
 }

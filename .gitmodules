@@ -1,0 +1,6 @@
+[submodule "libarchive"]
+	path = libarchive
+	url = https://github.com/libarchive/libarchive
+[submodule "zstd"]
+	path = zstd
+	url = https://github.com/facebook/zstd
