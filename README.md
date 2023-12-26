@@ -18,7 +18,7 @@ emmake make &&
 # Make libarchive 3.7.2
 cd ../libarchive
 build/autogen.sh
-emconfigure ./configure --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --disable-shared --enable-bsdtar=static CPPFLAGS=-O3 -I../zstd/lib LDFLAGS=-O3 -L../zstd/lib &&
+emconfigure ./configure --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --disable-shared --enable-bsdtar=static CPPFLAGS='-O3 -I../zstd/lib' LDFLAGS='-O3 -L../zstd/lib' &&
 emmake make && 
 # Finally build asr engine
 cd .. &&
