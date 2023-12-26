@@ -1,6 +1,10 @@
 [submodule "libarchive"]
 	path = src/libarchive
 	url = https://github.com/libarchive/libarchive
+	ignore = all
+	branch = master
 [submodule "zstd"]
 	path = src/zstd
 	url = https://github.com/facebook/zstd
+	ignore = all
+	branch = dev
