@@ -2,14 +2,18 @@
 	path = src/libarchive
 	url = https://github.com/libarchive/libarchive
 	branch = master
+	ignore = dirty
 [submodule "zstd"]
 	path = src/zstd
 	url = https://github.com/facebook/zstd
 	branch = dev
+	ignore = dirty
 [submodule "vosk-api"]
 	path = src/vosk
 	url = https://github.com/alphacep/vosk-api
+	ignore = dirty
 [submodule "kaldi"]
 	path = src/kaldi
 	url = https://github.com/alphacep/kaldi
 	branch = vosk
+	ignore = dirty
