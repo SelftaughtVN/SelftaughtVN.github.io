@@ -1,5 +1,5 @@
 # Activate
-source emsdk/emsdk_env.sh &&
+source ../emsdk/emsdk_env.sh &&
 # Make zstd 1.5.5 no install
 cd src/zstd &&
 emmake make &&
