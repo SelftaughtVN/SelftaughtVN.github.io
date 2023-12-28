@@ -3,16 +3,19 @@ source ../emsdk/emsdk_env.sh
 # Make install zstd 1.5.5, libarchive 3.7.2, and clapack in a separate process
 (
 cd src/zstd && 
-PREFIX=$(realpath ./built) emmake make install &&
+PREFIX=$(realpath ./built) emmake make -j 4 install &&
+make clean &&
 cd ../libarchive &&
 build/autogen.sh &&
 emconfigure ./configure --prefix=$(realpath ./built) --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --disable-shared --enable-bsdtar=static CPPFLAGS='-O3 -I../zstd/lib' LDFLAGS='-O3 -L../zstd/lib' && 
 emmake make install &&
+make clean &&
 cd ../clapack &&
-emcmake cmake && 
-emmake make -C F2CLIBS &&
-emmake make -C BLAS &&
-emmake make -C SRC
+git apply ../clapack.patch --whitespace=fix &&
+emcmake -j 4 cmake && 
+emmake make -j 4 -C F2CLIBS &&
+emmake make -j 4 -C BLAS &&
+emmake make -j 4 -C SRC
 ) &
 # Make install openfst 1.8.0 in this process (this thing takes years)
 cd src/openfst &&
