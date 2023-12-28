@@ -7,7 +7,7 @@ Following this will build the whole website from source, currently only availabl
 1. Follow the guide on the official [Emscripten website](https://emscripten.org/docs/getting_started/downloads.html) and download v3.1.51 through emsdk.
 2. And do:
 ```
-git clone https://github.com/SelftaughtVN/SelftaughtVN.github.io -b asr-implementation --single-branch --recurse-submodules &&
-cd SelftaughtVN.github.io &&
-./install.sh
+git clone https://github.com/SelftaughtVN/SelftaughtVN.github.io -b asr-implementation --single-branch --recurse-submodules 
+&& cd SelftaughtVN.github.io 
+&& ./install.sh
 ```
