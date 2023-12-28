@@ -17,10 +17,6 @@
 	url = https://github.com/alphacep/kaldi
 	branch = vosk
 	ignore = dirty
-[submodule "OpenBLAS"]
-	path = src/OpenBLAS
-	url = https://github.com/OpenMathLib/OpenBLAS
-	ignore = dirty
 [submodule "clapack"]
 	path = src/clapack
 	url = https://github.com/alphacep/clapack
