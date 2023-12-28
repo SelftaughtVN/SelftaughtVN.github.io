@@ -15,7 +15,7 @@ emmake make -C BLAS &&
 emmake make -C SRC
 ) &
 # Make install openfst 1.8.0 in this process (this thing takes years)
-cd ../openfst &&
+cd src/openfst &&
 autoupdate && 
 autoreconf -i -s && 
 CFLAGS="-g -O3" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath ../kaldi/tools/openfst) --enable-static --disable-shared --enable-far --enable-ngram-fsts --enable-lookahead-fsts --with-pic && 
