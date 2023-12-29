@@ -13,10 +13,9 @@ cd .. && rm -rf libarchive && mv /tmp/libarchive libarchive
 cd clapack && rm -rf /tmp/clapack
 git apply ../clapack.patch --whitespace=fix &&
 emcmake cmake &&
-PREFIX=/tmp/clapack/F2CLIBS emmake make -j 4 -C  F2CLIBS install &&
-PREFIX=/tmp/clapack/BLAS emmake make -j 4 -C BLAS install &&
-PREFIX=/tmp/clapack/SRC emmake make -j 4 -C SRC install &&
-cd .. && rm -rf clapack && mv /tmp/clapack ../kaldi/tools/clapack 
+emmake make -j 4 -C F2CLIBS &&
+emmake make -j 4 -C BLAS &&
+emmake make -j 4 -C SRC 
 ) &
 # Make install openfst 1.8.0 in this process (this thing takes years)
 cd src/openfst &&
