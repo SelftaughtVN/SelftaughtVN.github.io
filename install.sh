@@ -12,7 +12,7 @@ emmake make -j 4 install &&
 cd .. && rm -rf libarchive && mv /tmp/libarchive libarchive
 cd clapack && rm -rf /tmp/clapack
 git apply ../clapack.patch --whitespace=fix &&
-emcmake -j 4 cmake && 
+emcmake cmake -j 4 &&
 PREFIX=/tmp/clapack/F2CLIBS emmake make -j 4 -C  F2CLIBS install &&
 PREFIX=/tmp/clapack/BLAS emmake make -j 4 -C BLAS install &&
 PREFIX=/tmp/clapack/SRC emmake make -j 4 -C SRC install &&
