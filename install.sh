@@ -29,7 +29,7 @@ wait &&
 # Make kaldi 
 cd ../../src &&
 CXXFLAGS=-O3 LDFLAGS=-O3 emconfigure ./configure --use-cuda=no --static --static-math=yes --static-fst=yes --clapack-root=../../clapack --host=WASM &&
-emmake make -j 4 &&
+EMCC_CFLAGS='-msimd128 -U HAVE_EXECINFO_H' emmake make -j 4 online2bin &&
 # Make vosk
 # Finally build asr engine
 cd ../.. &&
