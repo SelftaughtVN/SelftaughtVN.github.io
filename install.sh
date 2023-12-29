@@ -2,28 +2,28 @@
 source ../emsdk/emsdk_env.sh  
 # Make install zstd 1.5.5, libarchive 3.7.2, and clapack in a separate process
 (
-cd src/zstd && 
-PREFIX=$(realpath ./built) emmake make -j 4 install &&
-make clean &&
-cd ../libarchive &&
-build/autogen.sh &&
-emconfigure ./configure --prefix=$(realpath ./built) --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --disable-shared --enable-bsdtar=static CPPFLAGS='-O3 -I../zstd/lib' LDFLAGS='-O3 -L../zstd/lib' && 
-emmake make install &&
-make clean &&
-cd ../clapack &&
+cd src/zstd && rm -rf /tmp/zstd
+PREFIX=/tmp/zstd emmake make -j 4 install &&
+cd .. && rm -rf zstd && mv /tmp/zstd zstd
+cd libarchive && rm -rf /tmp/libarchive &&
+build/autogen.sh && 
+emconfigure ./configure --prefix=/tmp/libarchive --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --disable-shared --enable-bsdtar=static CPPFLAGS='-O3 -I../zstd/lib' LDFLAGS='-O3 -L../zstd/lib' && 
+emmake make -j 4 install &&
+cd .. && rm -rf libarchive && mv /tmp/libarchive libarchive
+cd clapack && rm -rf /tmp/clapack
 git apply ../clapack.patch --whitespace=fix &&
 emcmake -j 4 cmake && 
-emmake make -j 4 -C F2CLIBS &&
-emmake make -j 4 -C BLAS &&
-emmake make -j 4 -C SRC
+PREFIX=/tmp/clapack/F2CLIBS emmake make -j 4 -C  F2CLIBS install &&
+PREFIX=/tmp/clapack/BLAS emmake make -j 4 -C install BLAS &&
+PREFIX=/tmp/clapack/SRC emmake make -j 4 -C install SRC &&
+cd .. && rm -rf clapack && mv /tmp/clapack ../kaldi/tools/clapack 
 ) &
 # Make install openfst 1.8.0 in this process (this thing takes years)
 cd src/openfst &&
-autoupdate && 
-autoreconf -i -s && 
+autoupdate && autoreconf -if && 
 CFLAGS="-g -O3" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath ../kaldi/tools/openfst) --enable-static --disable-shared --enable-far --enable-ngram-fsts --enable-lookahead-fsts --with-pic && 
 emmake make -j 4 install &&
-ln -sf ../../../openfst/Makefile  ../kaldi/tools/openfst &&
+cd .. && rm -rf openfst &&
 wait &&
 # Make kaldi 
 cd ../kaldi/src &&
