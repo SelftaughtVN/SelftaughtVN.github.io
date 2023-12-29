@@ -1,6 +1,6 @@
 # Activate and add (the directory containing) wasm-ld to PATH
 source ../emsdk/emsdk_env.sh  
-export PATH=:$PATH:$(realpath ../upstream/bin)
+export PATH=:$PATH:$(realpath ../emsdk/upstream/bin)
 # Make install zstd 1.5.5, libarchive 3.7.2, and clapack-wasm in a separate process
 #In-place install (make install to /tmp, delete and mv back) if possible to save disk space (if not the whole will take > 3GB)
 (
