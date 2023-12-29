@@ -23,9 +23,11 @@ autoupdate && autoreconf -if &&
 CFLAGS="-g -O3" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath ../kaldi/tools/openfst) --enable-static --disable-shared --enable-far --enable-ngram-fsts --enable-lookahead-fsts --with-pic && 
 emmake make -j 4 install &&
 cd .. && rm -rf openfst &&
+cd kaldi/tools/openfst &&
+echo "PACKAGE_VERSION = 1.8.0" >> Makefile &&
 wait &&
 # Make kaldi 
-cd ../kaldi/src &&
+cd ../../src &&
 CXXFLAGS=-O3 LDFLAGS=-O3 emconfigure ./configure --use-cuda=no --static --static-math=yes --static-fst=yes --clapack-root=../../clapack --host=WASM &&
 emmake make -j 4 &&
 # Make vosk
