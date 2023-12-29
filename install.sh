@@ -31,4 +31,4 @@ emmake make -j 4 &&
 # Make vosk
 # Finally build asr engine
 cd ../.. &&
-em++ -O3 asr.cpp -sWASMFS -sWASM_BIGINT -sSUPPORT_BIG_ENDIAN -sINITIAL_MEMORY=35mb -sPTHREAD_POOL_SIZE=2 -pthread -Ilibarchive/built/include -Llibarchive/built/libs -larchive -Lzstd/built/lib -lzstd -lopfs.js -o ../asr.js
+em++ -O3 asr.cpp -sWASMFS -sWASM_BIGINT -sSUPPORT_BIG_ENDIAN -sINITIAL_MEMORY=35mb -sPTHREAD_POOL_SIZE=2 -pthread -Ilibarchive/include -Llibarchive/lib -larchive -Lzstd/lib -lzstd -lopfs.js -o ../asr.js
