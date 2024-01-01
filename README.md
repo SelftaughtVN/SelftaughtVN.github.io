@@ -9,5 +9,5 @@ Following this will build the whole website from source, currently only availabl
 ```
 git clone https://github.com/SelftaughtVN/SelftaughtVN.github.io -b asr-implementation --single-branch --recurse-submodules &&
 cd SelftaughtVN.github.io/src &&
-sh ./install.sh
+./install.sh
 ```
