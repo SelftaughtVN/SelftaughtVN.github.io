@@ -38,7 +38,7 @@ export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin)
 cd $OPENFST &&
 autoupdate && 
 autoreconf -if && 
-CFLAGS="-g -O3" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath ../kaldi/tools/openfst) --enable-static --disable-shared --enable-ngram-fsts --with-pic && 
+CFLAGS="-g -O3" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath ../kaldi/tools/openfst) --enable-static --disable-shared --enable-ngram-fsts --enable-lookahead-fsts --with-pic && 
 emmake make -j 4 install &&
 rm -rf $OPENFST &&
 # Quick fake Makefile to bypass Kaldi's openfst version check
@@ -52,6 +52,7 @@ cd $KALDI/src
 CXXFLAGS='-O3 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -msimd128 -UHAVE_EXECINFO_H' LDFLAGS='-O3 -sERROR_ON_UNDEFINED_SYMBOLS=0 -lembind' emconfigure ./configure --use-cuda=no --with-cudadecoder=no --static --static-math=yes --static-fst=yes --clapack-root=$CLAPACK_WASM --host=WASM && 
 emmake make -j 6 && 
 
+:'
 # Make vosk (modify Makefile to parallel make)
 cd $VOSK
 git apply $SRC/vosk.patch
@@ -65,3 +66,4 @@ em++ -O3 asr.cpp -sWASMFS -sWASM_BIGINT -sSUPPORT_BIG_ENDIAN -sINITIAL_MEMORY=35
 
 # Cleanup
 rm -rf $CLAPACK_WASM $KALDI $LIBARCHIVE $VOSK $ZSTD
+'
