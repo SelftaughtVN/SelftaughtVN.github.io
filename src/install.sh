@@ -1,11 +1,11 @@
 # Locations variables
-SRC=$(realpath ./)
-KALDI=$(realpath kaldi)
-VOSK=$(realpath vosk)
-OPENFST=$(realpath openfst)
-LIBARCHIVE=$(realpath libarchive)
-ZSTD=$(realpath zstd)
-CLAPACK_WASM=$(realpath clapack-wasm)
+SRC=$(realpath ./) &&
+KALDI=$(realpath kaldi) &&
+VOSK=$(realpath vosk) &&
+OPENFST=$(realpath openfst) &&
+LIBARCHIVE=$(realpath libarchive) &&
+ZSTD=$(realpath zstd) && 
+CLAPACK_WASM=$(realpath clapack-wasm) &&
 
 # Activate and add (the directory containing) wasm-ld to PATH
 source ../../emsdk/emsdk_env.sh &&
@@ -44,23 +44,22 @@ OPENFST=$KALDI/tools/openfst &&
 # Quick fake Makefile to bypass Kaldi's openfst version check
 echo "PACKAGE_VERSION = 1.8.0" >> $OPENFST/Makefile &&
 
-# Make kaldi (more thread because this takes the longest)
+# Kaldi ?.?.? 
 cd $KALDI &&
 git apply $SRC/kaldi.patch &&
 cd $KALDI/src &&
 CXXFLAGS="-O3 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -msimd128 -UHAVE_EXECINFO_H" LDFLAGS="-O3 -sERROR_ON_UNDEFINED_SYMBOLS=0 -lembind" emconfigure ./configure --use-cuda=no --with-cudadecoder=no --static --static-math=yes --static-fst=yes --clapack-root=$CLAPACK_WASM --host=WASM && 
-emmake make -j 6 
-:'
-# Make vosk
-cd $VOSK &&
-git apply $SRC/vosk.patch &&
-cd $VOSK/src &&
-KALDI=$KALDI CLAPACK_WASM=$CLAPACK_WASM emmake make -j 4 &&
+emmake make -j 5
+
+# In-place: vosk 0.3.45
+# cd $VOSK &&
+# git apply $SRC/vosk.patch &&
+# cd $VOSK/src &&
+# KALDI=$KALDI CLAPACK_WASM=$CLAPACK_WASM emmake make -j 4 &&
 
 # Finally build asr engine
-cd $SRC && 
-em++ -O3 asr.cpp -sWASMFS -sWASM_BIGINT -sSUPPORT_BIG_ENDIAN -sINITIAL_MEMORY=35mb -sPTHREAD_POOL_SIZE=2 -pthread -I$LIBARCHIVE/include -I$VOSK/src -L$LIBARCHIVE/lib -larchive -L$ZSTD/lib -lzstd -L$KALDI/src/online2 -l:kaldi-online2.a -L$KALDI/src/decoder -l:kaldi-decoder.a -L$KALDI/src/ivector -l:kaldi-ivector.a -L$KALDI/src/gmm -l:kaldi-gmm.a -L$KALDI/src/tree -l:kaldi-tree.a -L$KALDI/src/feat -l:kaldi-feat.a -L$KALDI/src/cudamatrix -l:kaldi-cudamatrix.a -L$KALDI/src/lat -l:kaldi-lat.a -L$KALDI/src/lm -l:kaldi-lm.a -L$KALDI/src/rnnlm -l:kaldi-rnnlm.a -L$KALDI/src/hmm -l:kaldi-hmm.a -L$KALDI/src/nnet3 -l:kaldi-nnet3.a -L$KALDI/src/transform -l:kaldi-transform.a -L$KALDI/src/matrix -l:kaldi-matrix.a -L$KALDI/src/fstext -l:kaldi-fstext.a -L$KALDI/src/util -l:kaldi-util.a -L$KALDI/src/base -l:kaldi-base.a -L$OPENFST/lib -l:libfst.a -L$OPENFST/lib -l:libfstngram.a -L$CLAPACK_WASM/CBLAS/lib -l:cblas.a -L$CLAPACK_WASM/CLAPACK-3.2.1 -l:lapack.a -l:libcblaswr.a -L$CLAPACK_WASM/f2c_BLAS-3.8.0 -l:blas.a -L$CLAPACK_WASM/libf2c -l:libf2c.a -L$VOSK/src -l:vosk.a -lopfs.js -lopenal -o $SRC/asr.js &&
+# cd $SRC && 
+# em++ -O3 asr.cpp -sWASMFS -sWASM_BIGINT -sSUPPORT_BIG_ENDIAN -sINITIAL_MEMORY=35mb -sPTHREAD_POOL_SIZE=2 -pthread -I$LIBARCHIVE/include -I$VOSK/src -L$LIBARCHIVE/lib -larchive -L$ZSTD/lib -lzstd -L$KALDI/src/online2 -l:kaldi-online2.a -L$KALDI/src/decoder -l:kaldi-decoder.a -L$KALDI/src/ivector -l:kaldi-ivector.a -L$KALDI/src/gmm -l:kaldi-gmm.a -L$KALDI/src/tree -l:kaldi-tree.a -L$KALDI/src/feat -l:kaldi-feat.a -L$KALDI/src/cudamatrix -l:kaldi-cudamatrix.a -L$KALDI/src/lat -l:kaldi-lat.a -L$KALDI/src/lm -l:kaldi-lm.a -L$KALDI/src/rnnlm -l:kaldi-rnnlm.a -L$KALDI/src/hmm -l:kaldi-hmm.a -L$KALDI/src/nnet3 -l:kaldi-nnet3.a -L$KALDI/src/transform -l:kaldi-transform.a -L$KALDI/src/matrix -l:kaldi-matrix.a -L$KALDI/src/fstext -l:kaldi-fstext.a -L$KALDI/src/util -l:kaldi-util.a -L$KALDI/src/base -l:kaldi-base.a -L$OPENFST/lib -l:libfst.a -L$OPENFST/lib -l:libfstngram.a -L$CLAPACK_WASM/CBLAS/lib -l:cblas.a -L$CLAPACK_WASM/CLAPACK-3.2.1 -l:lapack.a -l:libcblaswr.a -L$CLAPACK_WASM/f2c_BLAS-3.8.0 -l:blas.a -L$CLAPACK_WASM/libf2c -l:libf2c.a -L$VOSK/src -l:vosk.a -lopfs.js -lopenal -o $SRC/asr.js &&
 
 # Cleanup
-rm -rf $CLAPACK_WASM $KALDI $LIBARCHIVE $VOSK $ZSTD
-'
+# rm -rf $CLAPACK_WASM $KALDI $LIBARCHIVE $VOSK $ZSTD
