@@ -1,4 +1,4 @@
-#Locations variables
+# Locations variables
 SRC=$(realpath ./)
 KALDI=$(realpath kaldi)
 VOSK=$(realpath vosk)
@@ -8,23 +8,23 @@ ZSTD=$(realpath zstd)
 CLAPACK_WASM=$(realpath clapack-wasm)
 
 # Activate and add (the directory containing) wasm-ld to PATH
-source ../../emsdk/emsdk_env.sh  
-export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin)
+source ../../emsdk/emsdk_env.sh &&
+export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin) &&
 
-#In-place: make install to /tmp, delete root, and move back to correct directory if possible to save disk space or else the whole repo will take > 4GB
+# In-place: make install to /tmp, delete root, and move back to correct directory if possible to save disk space or else the whole repo will take > 4GB
 
 # zstd 1.5.5, libarchive 3.7.2, clapack-wasm in a separate process (in-place)
 (
     cd $ZSTD && 
     rm -rf /tmp/zstd &&
-    PREFIX=/tmp/zstd emmake make -j 4 install &&
+    PREFIX=/tmp/zstd CPPFLAGS=-O3 LDFLAGS=-O3 emmake make -j 4 install &&
     rm -rf $ZSTD && 
     mv /tmp/zstd $ZSTD && 
 
     cd $LIBARCHIVE && 
     rm -rf /tmp/libarchive &&
     build/autogen.sh && 
-    emconfigure ./configure --prefix=/tmp/libarchive --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --enable-static --disable-shared CPPFLAGS="-O3 -I$ZSTD/include" LDFLAGS="-O3 -L$ZSTD/lib" && 
+    CPPFLAGS=-I$ZSTD/include LDFLAGS=-L$ZSTD/lib emconfigure ./configure --prefix=/tmp/libarchive --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --enable-static --disable-shared && 
     emmake make -j 4 install &&
     rm -rf $LIBARCHIVE && 
     mv /tmp/libarchive $LIBARCHIVE &&
@@ -37,7 +37,7 @@ export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin)
 # In-place: openfst 1.8.0 in this process (this thing takes years)
 cd $OPENFST &&
 autoreconf -if && 
-CFLAGS="-g -O3" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath $KALDI/tools/openfst) --enable-static --disable-shared --enable-ngram-fsts --enable-lookahead-fsts --disable-bin --with-pic && 
+CFLAGS="-O3 -r" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath $KALDI/tools/openfst) --enable-static --disable-shared --enable-ngram-fsts --enable-lookahead-fsts --disable-bin --with-pic && 
 emmake make -j 4 install &&
 rm -rf $OPENFST &&
 OPENFST=$KALDI/tools/openfst &&
