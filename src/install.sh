@@ -36,7 +36,7 @@ bash ./install_repo.sh emcc
 
 # In-place: openfst 1.8.0 
 cd $OPENFST &&
-autoreconf -if && 
+autoreconf -ifs  
 CFLAGS="-O3 -r" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath $KALDI/tools/openfst) --enable-static --disable-shared --enable-ngram-fsts --enable-lookahead-fsts --disable-bin --with-pic && 
 emmake make -j 4 install &&
 rm -rf $OPENFST &&
