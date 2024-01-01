@@ -27,10 +27,10 @@ export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin)
     emconfigure ./configure --prefix=/tmp/libarchive --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --disable-shared --enable-bsdtar=static CPPFLAGS='-O3 -I$ZSTD/lib' LDFLAGS='-O3 -L$ZSTD/lib' && 
     emmake make -j 4 install &&
     rm -rf $LIBARCHIVE && 
-    mv /tmp/libarchive $LIBARCHIVE 
+    mv /tmp/libarchive $LIBARCHIVE &&
 
     cd $CLAPACK_WASM &&
-    git apply $SRC/clapack-wasm.patch
+    git apply $SRC/clapack-wasm.patch &&
     ./install_repo.sh emcc
 ) &
 
