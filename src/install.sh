@@ -19,12 +19,12 @@ export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin)
     rm -rf /tmp/zstd &&
     PREFIX=/tmp/zstd emmake make -j 4 install &&
     rm -rf $ZSTD && 
-    mv /tmp/zstd $ZSTD &&
+    mv /tmp/zstd $ZSTD && 
 
     cd $LIBARCHIVE && 
     rm -rf /tmp/libarchive &&
     build/autogen.sh && 
-    emconfigure ./configure --prefix=/tmp/libarchive --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --disable-shared --enable-bsdtar=static CPPFLAGS='-O3 -I$ZSTD/lib' LDFLAGS='-O3 -L$ZSTD/lib' && 
+    emconfigure ./configure --prefix=/tmp/libarchive --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --enable-static --disable-shared CPPFLAGS='-O3 -I$ZSTD/include' LDFLAGS='-O3 -L$ZSTD/lib' && 
     emmake make -j 4 install &&
     rm -rf $LIBARCHIVE && 
     mv /tmp/libarchive $LIBARCHIVE &&
@@ -38,7 +38,7 @@ export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin)
 cd $OPENFST &&
 autoupdate && 
 autoreconf -if && 
-CFLAGS="-g -O3" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath ../kaldi/tools/openfst) --enable-static --disable-shared --enable-ngram-fsts --enable-lookahead-fsts --with-pic && 
+CFLAGS="-g -O3" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath ../kaldi/tools/openfst) --enable-static --disable-shared --enable-ngram-fsts --enable-lookahead-fsts --disable-bin --with-pic && 
 emmake make -j 4 install &&
 rm -rf $OPENFST &&
 # Quick fake Makefile to bypass Kaldi's openfst version check
