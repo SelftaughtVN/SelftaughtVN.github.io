@@ -13,28 +13,28 @@ export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin) &&
 
 # In-place: make install to /tmp, delete root, and move back to correct directory if possible to save disk space or else the whole repo will take > 4GB
 
-# zstd 1.5.5, libarchive 3.7.2, clapack-wasm in a separate process (in-place)
-(
-    cd $ZSTD && 
-    rm -rf /tmp/zstd &&
-    PREFIX=/tmp/zstd CPPFLAGS=-O3 LDFLAGS=-O3 emmake make -j 4 install &&
-    rm -rf $ZSTD && 
-    mv /tmp/zstd $ZSTD && 
+# In-place: zstd 1.5.5
+cd $ZSTD && 
+rm -rf /tmp/zstd &&
+PREFIX=/tmp/zstd CPPFLAGS=-O3 LDFLAGS=-O3 emmake make -j 4 install &&
+rm -rf $ZSTD && 
+mv /tmp/zstd $ZSTD && 
 
-    cd $LIBARCHIVE && 
-    rm -rf /tmp/libarchive &&
-    build/autogen.sh && 
-    CPPFLAGS=-I$ZSTD/include LDFLAGS=-L$ZSTD/lib emconfigure ./configure --prefix=/tmp/libarchive --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --enable-static --disable-shared && 
-    emmake make -j 4 install &&
-    rm -rf $LIBARCHIVE && 
-    mv /tmp/libarchive $LIBARCHIVE &&
+# In-place: libarchive 3.7.2
+cd $LIBARCHIVE && 
+rm -rf /tmp/libarchive &&
+build/autogen.sh && 
+CPPFLAGS=-I$ZSTD/include LDFLAGS=-L$ZSTD/lib emconfigure ./configure --prefix=/tmp/libarchive --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --enable-static --disable-shared && 
+emmake make -j 4 install &&
+rm -rf $LIBARCHIVE && 
+mv /tmp/libarchive $LIBARCHIVE &&
 
-    cd $CLAPACK_WASM &&
-    git apply $SRC/clapack-wasm.patch &&
-    bash ./install_repo.sh emcc
-) &
+# clapack-wasm ?.?.?
+cd $CLAPACK_WASM &&
+git apply $SRC/clapack-wasm.patch &&
+bash ./install_repo.sh emcc &&
 
-# In-place: openfst 1.8.0 in this process (this thing takes years)
+# In-place: openfst 1.8.0 
 cd $OPENFST &&
 autoreconf -if && 
 CFLAGS="-O3 -r" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath $KALDI/tools/openfst) --enable-static --disable-shared --enable-ngram-fsts --enable-lookahead-fsts --disable-bin --with-pic && 
@@ -43,7 +43,6 @@ rm -rf $OPENFST &&
 OPENFST=$KALDI/tools/openfst &&
 # Quick fake Makefile to bypass Kaldi's openfst version check
 echo "PACKAGE_VERSION = 1.8.0" >> $OPENFST/Makefile &&
-wait &&
 
 # Make kaldi (more thread because this takes the longest)
 cd $KALDI &&
