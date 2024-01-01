@@ -32,7 +32,7 @@ mv /tmp/libarchive $LIBARCHIVE &&
 # clapack-wasm ?.?.?
 cd $CLAPACK_WASM &&
 git apply $SRC/clapack-wasm.patch &&
-bash ./install_repo.sh emcc &&
+bash ./install_repo.sh emcc 
 
 # In-place: openfst 1.8.0 
 cd $OPENFST &&
