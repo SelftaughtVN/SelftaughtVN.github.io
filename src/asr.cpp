@@ -1,6 +1,9 @@
 #include <emscripten/wasmfs.h>
 #include <emscripten/console.h>
 #include <emscripten.h>
+#include <AL/al.h>
+#include <AL/alc.h>
+#include "vosk/src/vosk_api.h"
 #include <archive.h>
 #include <archive_entry.h>
 #include <string>
@@ -40,11 +43,20 @@ int main() {
     fs::exists("opfs/model/ivector/global_cmvn.stats") &&
     fs::exists("opfs/model/ivector/online_cmvn.conf") &&
     fs::exists("opfs/model/ivector/splice.conf"))) {
-      emscripten_async_wget("../model.tzst", "opfs/model.tzst", extract, [](const char* filename){
+      emscripten_async_wget("../model.tzst", "opfs/model.tzst", extract, [](const char* filename){  
         emscripten_console_errorf("Couldn't fetch %s", filename);
       });
     }
     fs::remove("opfs/model.tzst"); //Remove if possible, see https://github.com/emscripten-core/emscripten/issues/20977
+    VoskModel* model {vosk_model_new("opfs/model")};
+    VoskRecognizer* rec {vosk_recognizer_new(model, EM_ASM_INT({
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      sr = ctx.sampleRate;
+      ctx.close();
+      return sr;
+    },NULL))};
+    vosk_recognizer_free(rec);
+    emscripten_console_log("WE DID IT!");
     return nullptr;
   },nullptr);
 }

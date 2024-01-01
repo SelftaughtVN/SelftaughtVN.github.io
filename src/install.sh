@@ -1,3 +1,5 @@
+# Total build time > 1hr, mostly from building kaldi
+
 # Locations variables
 SRC=$(realpath ./) &&
 KALDI=$(realpath kaldi) &&
@@ -16,7 +18,7 @@ export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin) &&
 # In-place: zstd 1.5.5
 cd $ZSTD && 
 rm -rf /tmp/zstd &&
-PREFIX=/tmp/zstd CPPFLAGS=-O3 LDFLAGS=-O3 emmake make -j 4 install &&
+PREFIX=/tmp/zstd CPPFLAGS=-O3 LDFLAGS=-O3 emmake make install &&
 rm -rf $ZSTD && 
 mv /tmp/zstd $ZSTD && 
 
@@ -25,7 +27,7 @@ cd $LIBARCHIVE &&
 rm -rf /tmp/libarchive &&
 build/autogen.sh && 
 CPPFLAGS=-I$ZSTD/include LDFLAGS=-L$ZSTD/lib emconfigure ./configure --prefix=/tmp/libarchive --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --enable-static --disable-shared && 
-emmake make -j 4 install &&
+emmake make install &&
 rm -rf $LIBARCHIVE && 
 mv /tmp/libarchive $LIBARCHIVE &&
 
@@ -35,32 +37,28 @@ bash ./install_repo.sh emcc
 
 # In-place: openfst 1.8.0 
 cd $OPENFST &&
-# I think it's my mistake, but I have to run this twice for some very odd reason
+# I think it's my mistake, but I have to run this twice for some reason
 autoreconf -ifs
 autoreconf -ifs
-CFLAGS="-O3 -r" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath $KALDI/tools/openfst) --enable-static --disable-shared --enable-ngram-fsts --enable-lookahead-fsts --disable-bin --with-pic && 
-emmake make -j 4 install &&
+CXXFLAGS="-pthread -r -O3"  LDFLAGS="-O3 -pthread" emconfigure ./configure --prefix=$KALDI/tools/openfst --enable-static --disable-shared --enable-ngram-fsts --enable-lookahead-fsts --disable-bin --with-pic && 
+emmake make install &&
 rm -rf $OPENFST &&
 OPENFST=$KALDI/tools/openfst &&
 # Quick fake Makefile to bypass Kaldi's openfst version check
 echo "PACKAGE_VERSION = 1.8.0" >> $OPENFST/Makefile &&
 
-# Kaldi ?.?.? 
-cd $KALDI &&
-git apply $SRC/kaldi.patch &&
+# kaldi ?.?.? (the beast)
 cd $KALDI/src &&
-CXXFLAGS="-O3 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -msimd128 -UHAVE_EXECINFO_H" LDFLAGS="-O3 -sERROR_ON_UNDEFINED_SYMBOLS=0 -lembind" emconfigure ./configure --use-cuda=no --with-cudadecoder=no --static --static-math=yes --static-fst=yes --clapack-root=$CLAPACK_WASM --host=WASM && 
-emmake make -j 5
+git apply $SRC/kaldi.patch &&
+CXXFLAGS="-O3 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -msimd128 -UHAVE_EXECINFO_H -pthread" LDFLAGS="-O3 -sERROR_ON_UNDEFINED_SYMBOLS=0 -lembind -pthread" emconfigure ./configure --use-cuda=no --with-cudadecoder=no --static --static-math=yes --static-fst=yes --clapack-root=$CLAPACK_WASM --host=WASM && 
+emmake make online2bin lm rnnlm &&
 
 # In-place: vosk 0.3.45
-# cd $VOSK &&
-# git apply $SRC/vosk.patch &&
-# cd $VOSK/src &&
-# KALDI=$KALDI CLAPACK_WASM=$CLAPACK_WASM emmake make -j 4 &&
+cd $VOSK/src &&
+VOSK_FILES="recognizer.cc language_model.cc model.cc spk_model.cc vosk_api.cc" &&
+em++ -pthread -O3 -I. -I$KALDI/src -I$OPENFST/include $VOSK_FILES -c &&
+emar -rcs vosk.a ${VOSK_FILES//.cc/.o} &&
 
 # Finally build asr engine
-# cd $SRC && 
-# em++ -O3 asr.cpp -sWASMFS -sWASM_BIGINT -sSUPPORT_BIG_ENDIAN -sINITIAL_MEMORY=35mb -sPTHREAD_POOL_SIZE=2 -pthread -I$LIBARCHIVE/include -I$VOSK/src -L$LIBARCHIVE/lib -larchive -L$ZSTD/lib -lzstd -L$KALDI/src/online2 -l:kaldi-online2.a -L$KALDI/src/decoder -l:kaldi-decoder.a -L$KALDI/src/ivector -l:kaldi-ivector.a -L$KALDI/src/gmm -l:kaldi-gmm.a -L$KALDI/src/tree -l:kaldi-tree.a -L$KALDI/src/feat -l:kaldi-feat.a -L$KALDI/src/cudamatrix -l:kaldi-cudamatrix.a -L$KALDI/src/lat -l:kaldi-lat.a -L$KALDI/src/lm -l:kaldi-lm.a -L$KALDI/src/rnnlm -l:kaldi-rnnlm.a -L$KALDI/src/hmm -l:kaldi-hmm.a -L$KALDI/src/nnet3 -l:kaldi-nnet3.a -L$KALDI/src/transform -l:kaldi-transform.a -L$KALDI/src/matrix -l:kaldi-matrix.a -L$KALDI/src/fstext -l:kaldi-fstext.a -L$KALDI/src/util -l:kaldi-util.a -L$KALDI/src/base -l:kaldi-base.a -L$OPENFST/lib -l:libfst.a -L$OPENFST/lib -l:libfstngram.a -L$CLAPACK_WASM/CBLAS/lib -l:cblas.a -L$CLAPACK_WASM/CLAPACK-3.2.1 -l:lapack.a -l:libcblaswr.a -L$CLAPACK_WASM/f2c_BLAS-3.8.0 -l:blas.a -L$CLAPACK_WASM/libf2c -l:libf2c.a -L$VOSK/src -l:vosk.a -lopfs.js -lopenal -o $SRC/asr.js &&
-
-# Cleanup
-# rm -rf $CLAPACK_WASM $KALDI $LIBARCHIVE $VOSK $ZSTD
+cd $SRC && 
+em++ -O3 asr.cpp -sWASMFS -sWASM_BIGINT -sSUPPORT_BIG_ENDIAN -sINITIAL_MEMORY=35mb -sPTHREAD_POOL_SIZE=2 -sSTANDALONE_WASM -pthread -I$LIBARCHIVE/include -I$VOSK/src -L$LIBARCHIVE/lib -larchive -L$ZSTD/lib -lzstd -L$KALDI/src -l:online2/kaldi-online2.a -l:decoder/kaldi-decoder.a -l:ivector/kaldi-ivector.a -l:gmm/kaldi-gmm.a -l:tree/kaldi-tree.a -l:feat/kaldi-feat.a -l:cudamatrix/kaldi-cudamatrix.a -l:lat/kaldi-lat.a -l:lm/kaldi-lm.a -l:rnnlm/kaldi-rnnlm.a -l:hmm/kaldi-hmm.a -l:nnet3/kaldi-nnet3.a -l:transform/kaldi-transform.a -l:matrix/kaldi-matrix.a -l:fstext/kaldi-fstext.a -l:util/kaldi-util.a -l:base/kaldi-base.a -L$OPENFST/lib -l:libfst.a -l:libfstngram.a -L$CLAPACK_WASM -l:CBLAS/lib/cblas.a -l:CLAPACK-3.2.1/lapack.a -l:CLAPACK-3.2.1/libcblaswr.a -l:f2c_BLAS-3.8.0/blas.a -l:libf2c/libf2c.a -L$VOSK/src -l:vosk.a -lopfs.js -lopenal -o $SRC/asr.js
