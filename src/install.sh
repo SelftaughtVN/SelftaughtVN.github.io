@@ -42,7 +42,7 @@ CFLAGS="-g -O3" LDFLAGS=-O3 emconfigure ./configure --prefix=$(realpath ../kaldi
 emmake make -j 4 install &&
 rm -rf $OPENFST &&
 # Quick fake Makefile to bypass Kaldi's openfst version check
-echo "PACKAGE_VERSION = 1.8.0" >> $KALDI/tools/openfst &&
+echo "PACKAGE_VERSION = 1.8.0" >> $KALDI/tools/openfst/Makefile &&
 wait &&
 
 # Make kaldi (more thread because this takes the longest)
