@@ -31,7 +31,7 @@ export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin)
 
     cd $CLAPACK_WASM &&
     git apply $SRC/clapack-wasm.patch &&
-    ./install_repo.sh emcc
+    bash ./install_repo.sh emcc
 ) &
 
 # In-place: openfst 1.8.0 in this process (this thing also takes years)
@@ -44,14 +44,14 @@ rm -rf $OPENFST &&
 # Quick fake Makefile to bypass Kaldi's openfst version check
 echo "PACKAGE_VERSION = 1.8.0" >> $KALDI/ &&
 wait &&
-:'
+
 # Make kaldi (more thread because this takes the longest)
 cd $KALDI &&
 git apply $SRC/kaldi.patch &&
 cd $KALDI/src &&
 CXXFLAGS="-O3 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -msimd128 -UHAVE_EXECINFO_H" LDFLAGS="-O3 -sERROR_ON_UNDEFINED_SYMBOLS=0 -lembind" emconfigure ./configure --use-cuda=no --with-cudadecoder=no --static --static-math=yes --static-fst=yes --clapack-root=$CLAPACK_WASM --host=WASM && 
-emmake make -j 6 && 
-
+emmake make -j 6 
+:'
 # Make vosk (modify Makefile to parallel make)
 cd $VOSK &&
 git apply $SRC/vosk.patch &&
