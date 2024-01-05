@@ -70,7 +70,7 @@ class rNavbar extends HTMLElement {
             }
             h5.brandname {
                 font-family: Comfortaa, cursive;
-                font-size: 0.9rem;
+                font-size: 1.05rem;
                 color: white;
                 display: inline-block;
             }
@@ -79,12 +79,9 @@ class rNavbar extends HTMLElement {
                     display: none;
                 }
             }
-            li.nav-item {
-                all: initial;
-            }
             a.nav-link, button.nav-link {
                 font-family: Comfortaa, cursive;
-                font-size: 0.9rem;
+                font-size: 1rem;
                 --underline-color: 255, 255, 255;
                 color: white;
                 text-decoration: underline rgba(var(--underline-color), 0) solid 0.2rem;

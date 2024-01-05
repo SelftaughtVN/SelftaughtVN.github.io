@@ -1,5 +1,22 @@
 //Usage: node minify.js [indir] [outdir]
-html_minifier_terser = require('html-minifier-terser')
+hmt = require('html-minifier-terser')
+hmtOpts = {
+    caseSensitive :true,
+    collapseBooleanAttributes: true,
+    collapseWhitespace: true,
+    collapseInlineTagWhitespace: true,
+    decodeEntities: true,
+    minifyCSS: true,
+    minifyJS: true,
+    minifyURLs: true,
+    removeComments: true,
+    removeEmptyAttributes: true,
+    removeRedundantAttributes: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true,
+    removeOptionalTags: true,
+    useShortDoctype: true,
+}
 terser = require('terser')
 fs = require('fs')
 path = require('path')
@@ -9,23 +26,7 @@ fs.readdirSync(args[0]).forEach(async function(file) {
     switch(path.extname(file)) {
         case '.html':
             try {
-                content = await html_minifier_terser.minify(fs.readFileSync(args[0] + '/' + file,'utf8'),{
-                    caseSensitive :true,
-                    collapseBooleanAttributes: true,
-                    collapseWhitespace: true,
-                    collapseInlineTagWhitespace: true,
-                    decodeEntities: true,
-                    minifyCSS: true,
-                    minifyJS: true,
-                    minifyURLs: true,
-                    removeComments: true,
-                    removeEmptyAttributes: true,
-                    removeEmptyElements: true,
-                    removeRedundantAttributes: true,
-                    removeScriptTypeAttributes: true,
-                    removeStyleLinkTypeAttributes: true,
-                    removeOptionalTags: true,
-                })
+                content = await hmt.minify(fs.readFileSync(args[0] + '/' + file,'utf8'),hmtOpts)
             }
             catch(err) {
                 console.log(err, " when minifying ", file)
@@ -33,7 +34,7 @@ fs.readdirSync(args[0]).forEach(async function(file) {
             break
         case '.js':
             try {
-                content = (await terser.minify(fs.readFileSync(args[0] + '/' + file,'utf8'))).code
+                content = (await terser.minify(fs.readFileSync(args[0] + '/' + file,'utf8'))).code.replaceAll(new RegExp('\\\\n *','g'),'')
             }
             catch(err) {
                 console.log(err, " when minifying ", file)

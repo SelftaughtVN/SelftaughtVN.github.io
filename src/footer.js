@@ -12,13 +12,15 @@ class rfooter extends HTMLElement {
         }
         .footnote {
             font-family: Arvo, serif;
-            font-size: 0.875rem;
+            font-size: 0.975rem;
             font-weight: 400;
             color: white;
+            size: 1.1rem;
         }
         a.email {
             color: white;
             text-decoration: underline white solid auto;
+            font-size: 0.975rem;
         }
         </style>
         <footer>
