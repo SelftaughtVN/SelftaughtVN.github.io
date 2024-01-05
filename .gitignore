@@ -1,1 +1,4 @@
 .vscode
+tools/*
+!tools/minify.js
+act
