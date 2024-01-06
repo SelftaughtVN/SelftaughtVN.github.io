@@ -7,10 +7,10 @@ index d95fdc9..0635009 100644
   int
  #ifdef KR_headers
 -main(argc, argv) int argc; char **argv;
-+f2c_main(argc, argv) int argc; char **argv;
++rm_main(argc, argv) int argc; char **argv;
  #else
 -main(int argc, char **argv)
-+f2c_main(int argc, char **argv)
++rm_main(int argc, char **argv)
  #endif
  {
  xargc = argc;
