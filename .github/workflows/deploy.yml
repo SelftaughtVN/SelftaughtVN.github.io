@@ -2,6 +2,7 @@ name: Publish with auto-optimization
 run-name: Publish with auto-optimization 
 
 on:
+  push:
   workflow_dispatch:
 
 permissions:
