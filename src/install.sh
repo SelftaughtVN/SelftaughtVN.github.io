@@ -1,7 +1,7 @@
-# Total build time > 1hr, mostly from building kaldi
+# Total build time > 30min, mostly from building kaldi
 
 # Locations variables
-SRC=$(realpath ./) &&
+SRC=$(realpath .) &&
 KALDI=$(realpath kaldi) &&
 VOSK=$(realpath vosk) &&
 OPENFST=$(realpath openfst) &&

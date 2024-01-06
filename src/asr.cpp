@@ -1,3 +1,5 @@
+#include <filesystem>
+
 #include <emscripten/wasmfs.h>
 #include <emscripten/console.h>
 #include <emscripten.h>
@@ -5,8 +7,8 @@
 #include <AL/alc.h>
 #include <archive.h>
 #include <archive_entry.h>
-#include <filesystem>
-#include "vosk/src/vosk_api.h"
+#include <vosk_api.h>
+
 namespace fs = std::filesystem;
 void extract() {
   std::string path{"opfs/"};
@@ -42,7 +44,7 @@ int main() {
   Backend* opfs {wasmfs_create_opfs_backend()};
     wasmfs_create_directory("opfs", 0777, opfs);
     if(!check()) {
-      if(emscripten_wget("../assets/model.tzst","opfs/model.tzst") == 1) {
+      if(emscripten_wget("assets/model.tzst","opfs/model.tzst") == 1) {
         emscripten_console_errorf("Unable to fetch");
         return 1;
       }
@@ -56,7 +58,6 @@ int main() {
       ctx.close();
       return sr;
     })))};
-
     vosk_recognizer_free(rec);
     emscripten_console_log("WE DID IT!");
 }

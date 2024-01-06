@@ -10,3 +10,18 @@ index 398179a35..c903fbfd4 100644
  
  OBJFILES = kaldi-matrix.o kaldi-vector.o packed-matrix.o sp-matrix.o tp-matrix.o \
             matrix-functions.o qr.o srfft.o compressed-matrix.o \
+
+
+diff --git a/src/util/kaldi-thread.cc b/src/util/kaldi-thread.cc
+index 4573e24f1..4af4e73ea 100644
+--- a/src/util/kaldi-thread.cc
++++ b/src/util/kaldi-thread.cc
+@@ -22,7 +22,7 @@
+ #include "util/kaldi-thread.h"
+ 
+ namespace kaldi {
+-int32 g_num_threads = 4;  // Initialize this global variable.
++int32 g_num_threads = 1;  // Initialize this global variable.
+ 
+ MultiThreadable::~MultiThreadable() {
+   // default implementation does nothing
