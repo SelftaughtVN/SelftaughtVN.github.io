@@ -1,15 +1,6 @@
-#include <filesystem>
+#include "asre.h"
 
-#include <emscripten/wasmfs.h>
-#include <emscripten/console.h>
-#include <emscripten.h>
-#include <AL/al.h>
-#include <AL/alc.h>
-#include <archive.h>
-#include <archive_entry.h>
-#include <vosk_api.h>
 
-namespace fs = std::filesystem;
 void extract() {
   std::string path{"opfs/"};
   archive* src {archive_read_new()};

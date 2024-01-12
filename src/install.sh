@@ -18,9 +18,11 @@ export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin) &&
 # In-place: zstd 1.5.5
 cd $ZSTD && 
 rm -rf /tmp/zstd &&
-PREFIX=/tmp/zstd CPPFLAGS=-O3 LDFLAGS=-O3 emmake make install &&
+cd $ZSTD && 
+rm -rf /tmp/zstd &&
+HAVE_THREAD=0 ZSTD_LEGACY_SUPPORT=0 HAVE_ZLIB=0 HAVE_LZMA=0 HAVE_LZ4=0 ZSTD_NOBENCH=1 ZSTD_NODICT=1 ZSTD_NOCOMPRESS=1 BACKTRACE=0 ZSTD_STATIC_LINKING_ONLY=1 PREFIX=/tmp/zstd CPPFLAGS=-O3 LDFLAGS="-O3 -flto=full" emmake make install &&
 rm -rf $ZSTD && 
-mv /tmp/zstd $ZSTD && 
+mv /tmp/zstd $ZSTD &&
 
 # In-place: libarchive 3.7.2
 cd $LIBARCHIVE && 
