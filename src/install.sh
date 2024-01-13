@@ -1,6 +1,6 @@
 # Total build time > 30min, mostly from building kaldi
 
-sudo apt install shtool libtool autogen autotools-dev pkg-config &&
+sudo apt install shtool libtool autogen autotools-dev pkg-config make &&
 
 SRC=$(realpath .) &&
 KALDI=$(realpath kaldi) &&
