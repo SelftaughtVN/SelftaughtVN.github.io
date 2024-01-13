@@ -12,39 +12,38 @@ CLAPACK_WASM=$(realpath clapack-wasm) &&
 
 source ../../emsdk/emsdk_env.sh &&
 export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin) &&
-
 git clone -b v1.5.5 --depth=1 https://github.com/facebook/zstd /tmp/zstd &&
+git clone -b v3.7.2 --depth=1 https://github.com/libarchive/libarchive /tmp/libarchive &&
+git clone --depth=1 https://gitlab.inria.fr/multispeech/kaldi.web/clapack-wasm &&
+git clone --depth=1 https://github.com/alphacep/openfst /tmp/openfst &&
+git clone -b vosk --depth=1https://github.com/alphacep/kaldi &&
+git clone -b go/v0.3.46 --depth=1 https://github.com/alphacep/vosk-api &&
+
 cd /tmp/zstd && 
 HAVE_THREAD=0 ZSTD_LEGACY_SUPPORT=0 HAVE_ZLIB=0 HAVE_LZMA=0 HAVE_LZ4=0 ZSTD_NOBENCH=1 ZSTD_NODICT=1 ZSTD_NOCOMPRESS=1 BACKTRACE=0 ZSTD_STATIC_LINKING_ONLY=1 PREFIX=$SRC/zstd CPPFLAGS="-O3 -flto" LDFLAGS="-O3 -flto" emmake make install &&
 rm -rf /tmp/zstd &&
 
-git clone -b v3.7.2 --depth=1 https://github.com/libarchive/libarchive /tmp/libarchive
 cd /tmp/libarchive && 
 build/autogen.sh && 
 CPPFLAGS="-I$ZSTD/include -flto" LDFLAGS="-L$ZSTD/lib -flto" emconfigure ./configure --prefix=$SRC/libarchive --without-lz4 --without-lzma --without-zlib --without-bz2lib --without-xml2 --without-expat --without-cng --without-openssl --without-libb2 --disable-bsdunzip --disable-xattr --disable-acl --disable-bsdcpio --disable-bsdcat --disable-rpath --disable-maintainer-mode --disable-dependency-tracking --enable-static --disable-shared && 
 emmake make install &&
 rm -rf /tmp/libarchive &&
 
-git clone --depth=1 https://gitlab.inria.fr/multispeech/kaldi.web/clapack-wasm
 cd $CLAPACK_WASM &&
 git apply $SRC/clapack-wasm.patch &&
-bash ./install_repo.sh emcc 
+bash ./install_repo.sh emcc &&
 
-git clone --depth=1 https://github.com/alphacep/openfst /tmp/openfst
 cd /tmp/openfst &&
 autoreconf -i &&
 CXXFLAGS="-pthread -r -O3 -flto"  LDFLAGS="-O3 -pthread -flto" emconfigure ./configure --prefix=$OPENFST --enable-static --disable-shared --enable-ngram-fsts --enable-lookahead-fsts --disable-bin --with-pic && 
 emmake make install &&
 echo "PACKAGE_VERSION = 1.8.0" >> $OPENFST/Makefile &&
 
-git clone -b vosk --depth=1https://github.com/alphacep/kaldi
 cd $KALDI/src &&
-# Remove tests because they will always fail when building to wasm
 git apply $SRC/kaldi.patch &&
 CXXFLAGS="-O3 -msse3 -mssse3 -msse4.1 -msse4.2 -mavx -msimd128 -UHAVE_EXECINFO_H -pthread -flto" LDFLAGS="-O3 -sERROR_ON_UNDEFINED_SYMBOLS=0 -lembind -pthread -flto" emconfigure ./configure --use-cuda=no --with-cudadecoder=no --static --static-math=yes --static-fst=yes --double-precision=yes --debug-level=0 --clapack-root=$CLAPACK_WASM --host=WASM && 
 emmake make online2 lm rnnlm &&
 
-git clone -b go/v0.3.46 --depth=1 https://github.com/alphacep/vosk-api
 cd $VOSK/src &&
 VOSK_FILES="recognizer.cc language_model.cc model.cc spk_model.cc vosk_api.cc" &&
 em++ -pthread -O3 -flto -I. -I$KALDI/src -I$OPENFST/include $VOSK_FILES -c &&
