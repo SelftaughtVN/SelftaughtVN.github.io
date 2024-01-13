@@ -3,7 +3,7 @@
 
 
 # Some dependencies
-sudo apt install shtool libtool autogen autotools-dev pkg-config
+sudo apt install shtool libtool autogen autotools-dev pkg-config &&
 
 # Locations variables
 SRC=$(realpath .) &&
