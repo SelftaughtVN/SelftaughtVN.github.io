@@ -12,11 +12,14 @@ CLAPACK_WASM=$(realpath clapack-wasm) &&
 
 source ../../emsdk/emsdk_env.sh &&
 export PATH=:$PATH:$(realpath ../../emsdk/upstream/bin) &&
+rm -rf /tmp/zstd
+rm -rf /tmp/libarchive
+rm -rf /tmp/openfst
 git clone -b v1.5.5 --depth=1 https://github.com/facebook/zstd /tmp/zstd &&
 git clone -b v3.7.2 --depth=1 https://github.com/libarchive/libarchive /tmp/libarchive &&
 git clone --depth=1 https://gitlab.inria.fr/multispeech/kaldi.web/clapack-wasm &&
 git clone --depth=1 https://github.com/alphacep/openfst /tmp/openfst &&
-git clone -b vosk --depth=1https://github.com/alphacep/kaldi &&
+git clone -b vosk --depth=1 https://github.com/alphacep/kaldi &&
 git clone -b go/v0.3.46 --depth=1 https://github.com/alphacep/vosk-api &&
 
 cd /tmp/zstd && 
