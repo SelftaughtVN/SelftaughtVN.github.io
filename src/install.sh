@@ -4,7 +4,7 @@ sudo apt install shtool libtool autogen autotools-dev pkg-config make &&
 
 SRC=$(realpath .) &&
 KALDI=$(realpath kaldi) &&
-VOSK=$(realpath vosk) &&
+VOSK=$(realpath vosk-api) &&
 OPENFST=$KALDI/tools/openfst &&
 LIBARCHIVE=$(realpath libarchive) &&
 ZSTD=$(realpath zstd) && 
