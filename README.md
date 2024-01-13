@@ -18,7 +18,7 @@ cd ..
 ```
 *Make sure emsdk and the repo is in the same directory!*
 ```
-git clone https://github.com/SelftaughtVN/SelftaughtVN.github.io &&
+git clone -b asr-implementation https://github.com/SelftaughtVN/SelftaughtVN.github.io &&
 cd SelftaughtVN.github.io/src &&
 ./install.sh
 ```
