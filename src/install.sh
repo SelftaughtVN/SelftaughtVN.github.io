@@ -19,13 +19,13 @@ rm -rf /tmp/openfst &&
 
 git clone -b v1.5.5 --depth=1 https://github.com/facebook/zstd /tmp/zstd &&
 git clone -b v3.7.2 --depth=1 https://github.com/libarchive/libarchive /tmp/libarchive &&
-git clone --depth=1 https://gitlab.inria.fr/multispeech/kaldi.web/clapack-wasm &&
+git clone --depth=1 https://gitlab.inria.fr/multispeech/kaldi.web/clapack-wasm.git &&
 git clone --depth=1 https://github.com/alphacep/openfst /tmp/openfst &&
 git clone -b vosk --depth=1 https://github.com/alphacep/kaldi &&
 git clone -b go/v0.3.46 --depth=1 https://github.com/alphacep/vosk-api &&
 
 cd /tmp/zstd && 
-HAVE_THREAD=0 ZSTD_LEGACY_SUPPORT=0 HAVE_ZLIB=0 HAVE_LZMA=0 HAVE_LZ4=0 ZSTD_NOBENCH=1 ZSTD_NODICT=1 ZSTD_NOCOMPRESS=1 BACKTRACE=0 ZSTD_STATIC_LINKING_ONLY=1 PREFIX=$SRC/zstd CPPFLAGS="-O3 -flto" LDFLAGS="-O3 -flto" emmake make install &&
+HAVE_THREAD=0 ZSTD_LEGACY_SUPPORT=0 HAVE_ZLIB=0 HAVE_LZMA=0 HAVE_LZ4=0 ZSTD_NOBENCH=1 ZSTD_NODICT=1 ZSTD_NOCOMPRESS=1 BACKTRACE=0 PREFIX=$SRC/zstd CPPFLAGS="-O3 -flto" LDFLAGS="-O3 -flto" emmake make install &&
 rm -rf /tmp/zstd &&
 
 cd /tmp/libarchive && 
@@ -35,7 +35,6 @@ emmake make install &&
 rm -rf /tmp/libarchive &&
 
 cd $CLAPACK_WASM &&
-git apply $SRC/clapack-wasm.patch &&
 bash ./install_repo.sh emcc &&
 
 cd /tmp/openfst &&
