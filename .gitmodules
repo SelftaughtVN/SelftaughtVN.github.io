@@ -17,10 +17,6 @@
 	url = https://github.com/alphacep/kaldi
 	branch = vosk
 	ignore = dirty
-[submodule "openfst"]
-	path = src/openfst
-	url = https://github.com/alphacep/openfst
-	ignore = dirty
 [submodule "clapack-wasm"]
 	path = src/clapack-wasm
 	url = https://gitlab.inria.fr/multispeech/kaldi.web/clapack-wasm
