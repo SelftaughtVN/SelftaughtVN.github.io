@@ -2,3 +2,8 @@
 tools/*
 !tools/minify.js
 act
+src/clapack-wasm
+src/kaldi
+src/libarchive
+src/vosk-api
+src/zstd
