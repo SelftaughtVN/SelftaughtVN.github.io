@@ -1,0 +1,50 @@
+name: Publish with auto-optimization 
+run-name: Publish with auto-optimization 
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  all:
+    environment:
+      name: github-pages
+      url: ${{ steps._sitement.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout necessities
+        uses: actions/checkout@v4.1.1
+        with:
+          ref: asr-implementation
+          filter: tree:0
+      - run: cd ${{ github.workspace }} && git sparse-checkout set --no-cone src tools assets && git checkout
+
+      - name: Minify files
+        run: > 
+          cd tools && 
+          npm install terser html-minifier-terser && 
+          node minify.js ../src ../_site && 
+          mv ../src/asr.wasm ../_site && 
+          cd ../_site && 
+          sed -i 's/Vietnamese eLearning free for all/\n\nVietnamese eLearning\nfree for all\n\n\n/g' index.html && 
+          cd .. && 
+          mv assets _site &&
+          ls -R ./
+
+      - name: Configure 
+        uses: actions/configure-pages@v4.0.0
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3.0.0
+
+      - name: Publish 
+        uses: actions/deploy-pages@v4.0.2
+    

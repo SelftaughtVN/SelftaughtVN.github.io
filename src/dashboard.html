@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <!--<script> 
+            if(!(/^(.*;)?\s*__Host-sessionid\s*=\s*[^;]+(.*)?$/).test(document.cookie)) { 
+                window.location.replace("/") 
+            } 
+        </script>-->
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Sign up and learn Vietnamese online in an interactive and fun way, at your own pace and schedule!" />
+        <meta name="robots" content="noindex nofollow">
+        <link rel="icon" type="image/svg" href="assets/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Bitter:wght@500&family=Comfortaa&display=swap" onload="this.rel='stylesheet'" crossorigin />
+        <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" onload="this.rel='stylesheet'" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin async defer></script>
+        <script src="navbar.js" defer crossorigin></script>
+        <script src="footer.js" async crossorigin></script>
+        <noscript>
+            <h3>Please enable Javascript to view website.</h3>
+        </noscript>
+        <title>SelftaughtVN | Dashboard</title>
+        <style>
+            .page {
+                border-top: 67.5px solid #2487ff;
+                display: none;
+            }
+            .tree{
+                --spacing : 1.6rem;
+                --radius  : 9px;
+            }
+            .tree > li {
+                margin-top: 1.6rem;
+            }
+            .tree li{
+                display      : block;
+                position     : relative;
+                padding-left : calc(2 * var(--spacing) - var(--radius));
+            }
+
+            .tree ul{
+                margin-left  : calc(var(--radius) - var(--spacing));
+                padding-left : 0;
+            }
+            .tree ul li::before{
+               content      : '';
+               display      : block;
+               position     : absolute;
+               top          : calc(var(--spacing) / -2 + 1px);
+               left         : 0;
+               width        : var(--spacing);
+               height       : var(--spacing);
+               border       : solid #BFBFBF;
+               border-width : 0 0 2px 0px;
+            }
+            .tree summary{
+                display : block;
+                cursor  : pointer;
+            }
+            .tree ul li{
+                border-left : 2px solid #BFBFBF;
+            }
+            .tree ul li:first-child {
+                border-image: linear-gradient(to top, #BFBFBF calc(50% + 1px), rgba(0,0,0,0) calc(50% - 1px)) 1; 
+            }
+            .tree ul li:first-child::before {
+                border : solid #BFBFBF;
+                border-width : 0 0 2px 2px;
+                left: -2px;
+            }
+            .tree ul li:last-child {
+                border-image: linear-gradient(to bottom, #BFBFBF calc(50% + 1px), rgba(0,0,0,0) calc(50% - 1px)) 1;
+            }
+            .tree summary::marker,
+            .tree summary::-webkit-details-marker{
+                display : none;
+            }
+
+            .tree summary:focus-visible{
+                outline : 1px solid #000;
+            }
+
+            .tree li::after,
+            .tree summary::before {
+                content       : '';
+                display       : block;
+                position      : absolute;
+                top           : calc(var(--spacing) / 2 - var(--radius));
+                left          : calc(var(--spacing) - var(--radius) + 1px);
+                width         : calc(2 * var(--radius));
+                height        : calc(2 * var(--radius));
+                border-radius : 30%;
+                background    : lightgreen;
+            }
+            .tree summary::before{
+                z-index    : 1;
+                background-color : rgb(0, 179, 255)
+            }
+            h1 {
+                margin: 1.6rem;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <iframe style="display: none" name="tank" title="Contentless"></iframe>
+        <div class="page">
+            <r-navbar>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">[username]</button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <form id="logout" method="POST" action="https://script.google.com/macros/s/AKfycbwkCKonxlPJMcRawoowMfvmpwpn7PR-8hkFSkJ_oQBga6x3ndro5QWP0xaZhB5dJcYU/exec" target="tank">
+                                    <button id="logoutB" class="dropdown-item" type="submit">Log out</button>
+                                    <input name="formtype" id="formtype" type="hidden" readonly value="2" />
+                                    <input name="sessionid" id="sessionid" type="hidden" readonly />
+                                </form>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/settings.html">Settings</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/help.html">Help</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </r-navbar>
+            <h1>[username]</h1>
+            <ul class="tree">
+                <li>
+                    <details open><summary>Level 1: The Basic Vietnamese</summary>
+                        <ul>
+                            <li>Objectives and notes</li>
+                            <li><details>
+                                <summary>Unit 1: Introduction</summary>
+                                <ul>
+                                    <li>Why Vietnamese?</li>
+                                    <li>Vietnamese Typography</li>
+                                </ul> 
+                            </details></li><li><details>
+                                <summary>Unit 2: Alphabet & Tones</summary>
+                                <ul>
+                                    <li>Alphabet</li>
+                                    <li>Tones</li>
+                                </ul>  
+                            </details></li><li><details>
+                                <summary>Unit 3: Combining letters & Simple syllables</summary> 
+                                <ul>
+                                    <li>Combining Letters and Decomposing Words</li>
+                                    <li>Digraphs: th, ch, tr, ph</li>
+                                    <li>More Digraphs: nh, kh, ng-ngh, g-gh-gi</li>
+                                    <li>Half-unit Quiz</li>
+                                    <li>One-letter Syllables: a, e, ê, i</li>
+                                    <li>One-letter Syllables: o, ô, u, ư, y</li>
+                                    <li>One-letter words</li>
+                                    <li>Unit test</li>
+                                </ul>
+                            </details></li><li><details>
+                                <summary>Unit 4: Two-letter Syllables</summary>
+                                <ul>
+                                    <li>oi, ai, ôi ơi</li>
+                                    <li>ua, ưa, ui, ưi</li>
+                                    <li>eo, ao, au, âu</li>
+                                    <li>Half-unit Quiz</li>
+                                    <li>on, an, ân, ăn</li>
+                                    <li>ay, ây, iu, êu</li>
+                                    <li>en, ên, un, ơn</li>
+                                    <li>Unit test</li>
+                                </ul> 
+                            </details></li><li><details>
+                                <summary>Unit 5: Three-letter syllables </summary>
+                                <ul>
+                                    <li>ăng, âng, ung, ưng</li>
+                                    <li>uôi, ươi, iêu, ươu</li>
+                                    <li>uôn, ươn, ong, ông</li>
+                                    <li>Half-unit Quiz</li>
+                                    <li>eng, ang, anh, inh</li>
+                                    <li>ênh, iêm, uôm, ươm</li>
+                                    <li>uôt, ươt, uôc, iêc</li>
+                                    <li>Unit test</li>
+                                </ul>
+                            </details></li><li><details>
+                                <summary>Unit 6: Four-letter Syllables</summary> 
+                                <ul>
+                                    <li>uông, ương, iêng, uyên</li>
+                                    <li>uyêt, oang, oanh, oăng</li>
+                                    <li>oach, uynh, uych, uênh</li>
+                                </ul>
+                            </details></li>
+                            <li>Level test</li>
+                        </ul>
+                    </details>
+                </li>
+                <li>
+                    <details open>
+                        <ul><li>Coming Soon</li></ul>
+                        <summary>Level 2: The Moderate Vietnamese</summary>
+                    </details>
+                </li>
+            </ul>
+            <r-footer></r-footer>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                document.getElementById('logout').addEventListener('submit', () => {
+                    document.getElementById('formtype').value = "2"
+                    document.getElementById('sessionid').value = document.cookie.match('(^|;)\\s*__Host-sessionid\\s*=\\s*([^;]+)')?.pop()
+                    document.cookie = '__Host-sessionid=0; path=/; Max-Age=0; SameSite=Strict; Secure'
+                    window.location.replace("/")
+                })
+            })
+            window.addEventListener("load", () => {
+                document.querySelector(".page").style.display = "block"
+            })
+        </script>
+    </body>
+</html>
