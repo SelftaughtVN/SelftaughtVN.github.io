@@ -32,7 +32,6 @@ jobs:
           cd tools && 
           npm install terser html-minifier-terser && 
           node minify.js ../src ../_site && 
-          mv ../src/asr.wasm ../_site && 
           cd ../_site && 
           sed -i 's/Vietnamese eLearning free for all/\n\nVietnamese eLearning\nfree for all\n\n\n/g' index.html && 
           cd .. && 
