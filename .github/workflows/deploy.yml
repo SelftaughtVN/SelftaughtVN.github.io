@@ -17,17 +17,17 @@ jobs:
   all:
     environment:
       name: github-pages
-      url: ${{ steps._sitement.outputs.page_url }}
+      url: ${{ steps.publish.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout necessities
         uses: actions/checkout@v4.1.1
         with:
-          ref: asr-implementation
+          #ref: main
           filter: tree:0
       - run: cd ${{ github.workspace }} && git sparse-checkout set --no-cone src tools assets && git checkout
 
-      - name: Minify files
+      - name: Optimize files
         run: > 
           cd tools && 
           npm install terser html-minifier-terser && 
@@ -46,5 +46,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3.0.0
 
       - name: Publish 
+        id: publish
         uses: actions/deploy-pages@v4.0.2
     
